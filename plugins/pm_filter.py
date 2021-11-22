@@ -370,4 +370,4 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await query.message.delete()
                 
     else:
-        await query.answer("I Dont like Your Smartness👀",show_alert=True)
+        await query.answer("I Like Your Smartness, But Don't Be Oversmart 😒",show_alert=True)
