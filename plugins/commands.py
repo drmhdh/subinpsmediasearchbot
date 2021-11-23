@@ -112,6 +112,9 @@ async def start(bot, cmd):
                         InlineKeyboardButton("About", callback_data="about")
                     ],
                     [
+                        InlineKeyboardButton("➕Join 🦷Discussion Group➕", url="https://t.me/dent_tech_for_u")
+                    ],
+                    [
                         InlineKeyboardButton("🎁 Donate & Support 🎁", url="https://t.me/dental_backup/180")
                     ]
                 ]
