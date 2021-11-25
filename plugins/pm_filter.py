@@ -566,7 +566,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 ]]
                 
             await query.message.edit(text="<b>Developer : <a href='https://t.me/dent_tech_for_books'>📚🅳🆃 📖 🆁🅾🅾🅼📚</a>\nLanguage : <code>Python3</code>\nLibrary : <a href='https://t.me/dent_tech_library'>🔬𝔻𝕖𝕟𝕥 𝕋𝕖𝕔𝕙 𝕃𝕚𝕓𝕣𝕒𝕣𝕪📚</a>\nDiscussion Group: <a href='https://t.me/dent_tech_for_u'>Click Here</a>\n𝗝𝗼𝗶𝗻 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎: <a href='https://t.me/dental_case_study'>Click Here</a></b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
-         
+            
+            )
+            return
         elif query.data == "stats":
             buttons = [[
                 InlineKeyboardButton('👩‍🦯 Back', callback_data='start'),
@@ -585,6 +587,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 reply_markup=reply_markup,
                 parse_mode='html'
             
+            )
+            return
         elif query.data == "rfrsh":
             await query.answer("Fetching MongoDb DataBase")
             buttons = [[
@@ -604,8 +608,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 reply_markup=reply_markup,
                 parse_mode='html'
             
-        
-    elif query.data == "start":
+            )
+            return   
+        elif query.data == "start":
         buttons = [[            
             InlineKeyboardButton("Search Here", switch_inline_query_current_chat='')
             ],[  
