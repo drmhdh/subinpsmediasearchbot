@@ -2,6 +2,7 @@ import re
 import base64
 import logging
 from struct import pack
+from database.users_chats_db import db
 from pyrogram.errors import UserNotParticipant
 from pyrogram.file_id import FileId
 from pymongo.errors import DuplicateKeyError
