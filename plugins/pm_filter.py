@@ -253,6 +253,12 @@ async def give_filter(client,message):
 async def cb_handler(client: Client, query: CallbackQuery):
     if query.data == "close_data":
         await query.message.delete()
+        
+        
+        
+        
+        
+        
     elif query.data == "delallconfirm":
         userid = query.from_user.id
         chat_type = query.message.chat.type
@@ -306,8 +312,29 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     pass
             else:
                 await query.answer("Thats not for you!!",show_alert=True)
-
-
+                
+                
+    elif query.data == "start":
+        buttons = [[            
+            InlineKeyboardButton("Search Here", switch_inline_query_current_chat='')
+            ],[  
+            InlineKeyboardButton("🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎", url="https://t.me/dental_case_study")
+            ],[               
+            InlineKeyboardButton("About", callback_data="about")
+            ],[   
+            InlineKeyboardButton("➕Join 🦷Discussion Group➕", url="https://t.me/dent_tech_for_u")
+            ],[        
+            InlineKeyboardButton("🎁 Donate & Support 🎁", url="https://t.me/dental_backup/180")
+            ]]
+            reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_text(
+            text=script.START_TXT.format(query.from_user.mention, temp.U_NAME, temp.B_NAME),
+            reply_markup=reply_markup,
+            parse_mode='html'
+         
+        
+        
+        
     elif "groupcb" in query.data:
         await query.answer()
 
