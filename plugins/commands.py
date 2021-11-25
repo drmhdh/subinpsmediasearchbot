@@ -101,7 +101,7 @@ async def start(bot, cmd):
         await cmd.reply_photo(
             photo=random.choice(PICS),
             
-            caption=script.START_MSG.format,
+            caption=script.START_MSG.format(message.from_user.mention),
             parse_mode="markdown",
             
             reply_markup=InlineKeyboardMarkup(
