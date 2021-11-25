@@ -623,7 +623,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=reply_markup,
             parse_mode='html'
          
-        
+        )
         
     elif query.data.startswith("subinps"):
         ident, file_id = query.data.split("#")
