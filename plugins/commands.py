@@ -8,6 +8,7 @@ from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION,
 from utils import Media, get_file_details, get_size
 from pyrogram.errors import UserNotParticipant
 from utils import get_size, is_subscribed, temp
+import re
 logger = logging.getLogger(__name__)
 
 @Client.on_message(filters.command("start"))
