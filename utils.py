@@ -11,7 +11,7 @@ from datetime import datetime
 from typing import List
 from pyrogram.types import InlineKeyboardButton
 
-from bs4 import BeautifulSoup
+
 import requests
 
 logger = logging.getLogger(__name__)
