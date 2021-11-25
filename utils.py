@@ -91,22 +91,7 @@ async def search_gagala(text):
 
 
     
-def get_file_id(msg: message.from_user):        
-    if msg.media:
-        for message_type in (
-            "photo",
-            "animation",
-            "audio",
-            "document",
-            "video",
-            "video_note",
-            "voice",
-            "sticker"
-        ):
-            obj = getattr(msg, message_type)
-            if obj:
-                setattr(obj, "message_type", message_type)
-                return obj
+
 
 def extract_user(message: Message) -> Union[int, str]:
     """extracts the user from a message"""
