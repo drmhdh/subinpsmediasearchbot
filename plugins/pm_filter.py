@@ -271,7 +271,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 )
                 return
              
-         elif chat_type in ["group", "supergroup"]:
+        elif chat_type in ["group", "supergroup"]:
             grp_id = query.message.chat.id
             title = query.message.chat.title
 
