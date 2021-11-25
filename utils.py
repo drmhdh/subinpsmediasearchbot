@@ -26,6 +26,17 @@ instance = Instance.from_db(db)
 IClient = AsyncIOMotorClient(DATABASE_URI_2)
 imdbdb=client[DATABASE_NAME_2]
 imdb=Instance.from_db(imdbdb)
+# temp db for banned 
+class temp(object):
+    BANNED_USERS = []
+    BANNED_CHATS = []
+    ME = None
+    CURRENT=int(os.environ.get("SKIP", 2))
+    CANCEL = False
+    MELCOW = {}
+    U_NAME = None
+    B_NAME = None
+
 
 @instance.register
 class Media(Document):
