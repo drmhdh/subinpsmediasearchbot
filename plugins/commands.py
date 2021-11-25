@@ -104,7 +104,7 @@ async def start(bot, cmd):
             photo=random.choice(PICS),
             
             caption=script.START_MSG.format(cmd.from_user.mention if cmd.from_user else message.chat.title, temp.U_NAME, temp.B_NAME), 
-            disable_web_page_preview=True,
+            
             
             
             parse_mode='html',
