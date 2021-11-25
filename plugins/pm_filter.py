@@ -625,7 +625,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
          
         
         
-        elif query.data.startswith("subinps"):
+        """elif query.data.startswith("subinps"):
             ident, file_id = query.data.split("#")
             filedetails = await get_file_details(file_id)
             for files in filedetails:
@@ -686,7 +686,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     file_id=file_id,
                     caption=f_caption,
                     reply_markup=InlineKeyboardMarkup(buttons)
-                    )
+                    )"""
 
 
         elif query.data == "pages":
