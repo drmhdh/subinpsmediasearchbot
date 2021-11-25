@@ -91,7 +91,7 @@ async def search_gagala(text):
 
 
     
-def get_file_id(msg: message):
+def get_file_id(msg: message.from_user):        
     if msg.media:
         for message_type in (
             "photo",
