@@ -584,7 +584,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 text=script.STATUS_TXT.format(total, users, chats, monsize, free),
                 reply_markup=reply_markup,
                 parse_mode='html'
-            )
+            
         elif query.data == "rfrsh":
             await query.answer("Fetching MongoDb DataBase")
             buttons = [[
@@ -603,7 +603,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 text=script.STATUS_TXT.format(total, users, chats, monsize, free),
                 reply_markup=reply_markup,
                 parse_mode='html'
-            )
+            
         
     elif query.data == "start":
         buttons = [[            
