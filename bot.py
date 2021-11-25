@@ -33,7 +33,7 @@ class Bot(Client):
         temp.BANNED_CHATS = b_chats
         
        
-        me = await self.get_me()
+        
         temp.ME = me.id
         temp.U_NAME = me.username
         temp.B_NAME = me.first_name
