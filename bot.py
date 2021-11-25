@@ -5,10 +5,12 @@ import logging.config
 logging.config.fileConfig('logging.conf')
 logging.getLogger().setLevel(logging.ERROR)
 
+from database.users_chats_db import db
 from pyrogram import Client, __version__
 from pyrogram.raw.all import layer
 from utils import Media
 from info import SESSION, API_ID, API_HASH, BOT_TOKEN
+from utils import temp
 import pyromod.listen
 
 class Bot(Client):
@@ -25,6 +27,20 @@ class Bot(Client):
         )
 
     async def start(self):
+        
+        b_users, b_chats = await db.get_banned()
+        temp.BANNED_USERS = b_users
+        temp.BANNED_CHATS = b_chats
+        
+       
+        me = await self.get_me()
+        temp.ME = me.id
+        temp.U_NAME = me.username
+        temp.B_NAME = me.first_name
+        
+        logging.info(f"{me.first_name} with for Pyrogram v{__version__} (Layer {layer}) started on {me.username}.")
+        logging.info(LOG_STR)
+        
         await super().start()
         await Media.ensure_indexes()
         me = await self.get_me()
