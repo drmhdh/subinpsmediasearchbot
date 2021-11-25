@@ -100,7 +100,25 @@ while size >= 1024.0 and i < len(units):
     size /= 1024.0
 return "%.2f %s" % (size, units[i])
     
-    
+def get_file_id(msg: Message):
+    if msg.media:
+        for message_type in (
+            "photo",
+            "animation",
+            "audio",
+            "document",
+            "video",
+            "video_note",
+            "voice",
+            "sticker"
+        ):
+            obj = getattr(msg, message_type)
+            if obj:
+                setattr(obj, "message_type", message_type)
+                return obj
+
+            
+            
         
 @imdb.register
 class Poster(Document):
