@@ -272,11 +272,18 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 return
  
 
+     if query.data.startswith("file"):
+        ident, file_id = query.data.split("#")
+        files_ = await get_file_details(file_id)
+        if not files_:
+            return await query.answer('No such file exist.')
+        files = files_[0]
+        title = files.file_name
+        size=get_size(files.file_size)
+        f_caption=files.caption
 
 
-
-
-    
+   
     
     clicked = query.from_user.id
     try:
