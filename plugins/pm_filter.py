@@ -561,7 +561,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 ],[
                 InlineKeyboardButton('🔮 Status', callback_data='stats')    
                 ],[                
-                InlineKeyboardButton('🏠 Home', callback_data='subinps'),
+                InlineKeyboardButton('🏠 Home', callback_data='start'),
                 InlineKeyboardButton('🔐 Close', callback_data='close_data')
             ]]
                 
@@ -569,7 +569,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
          
         elif query.data == "stats":
             buttons = [[
-                InlineKeyboardButton('👩‍🦯 Back', callback_data='help'),
+                InlineKeyboardButton('👩‍🦯 Back', callback_data='start'),
                 InlineKeyboardButton('♻️', callback_data='rfrsh')
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
@@ -588,7 +588,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "rfrsh":
             await query.answer("Fetching MongoDb DataBase")
             buttons = [[
-                InlineKeyboardButton('👩‍🦯 Back', callback_data='subinps'),
+                InlineKeyboardButton('👩‍🦯 Back', callback_data='start'),
                 InlineKeyboardButton('♻️', callback_data='rfrsh')
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
