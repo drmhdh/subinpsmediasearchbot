@@ -7,6 +7,7 @@ import re
 from pyrogram.errors import UserNotParticipant
 from utils import get_filter_results, get_file_details, is_subscribed, get_poster
 from database.ia_filterdb import Media, get_file_details, get_search_results
+from database.users_chats_db import db
 
 BUTTONS = {}
 BOT = {}
