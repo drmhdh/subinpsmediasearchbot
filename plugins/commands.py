@@ -102,7 +102,7 @@ async def start(bot, cmd):
             photo=random.choice(PICS),
             
             caption=script.START_MSG
-            parse_mode="Markdown"
+            parse_mode="html",
             
             reply_markup=InlineKeyboardMarkup(
                 [
