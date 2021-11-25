@@ -2,9 +2,12 @@
 from info import AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, API_KEY, AUTH_GROUPS, BUTTON
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from pyrogram import Client, filters
+from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
 import re
 from pyrogram.errors import UserNotParticipant
 from utils import get_filter_results, get_file_details, is_subscribed, get_poster
+from database.ia_filterdb import Media, get_file_details, get_search_results
+
 BUTTONS = {}
 BOT = {}
 @Client.on_message(filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.text & filters.private & filters.incoming)
