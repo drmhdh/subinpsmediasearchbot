@@ -325,8 +325,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton("➕Join 🦷Discussion Group➕", url="https://t.me/dent_tech_for_u")
             ],[        
             InlineKeyboardButton("🎁 Donate & Support 🎁", url="https://t.me/dental_backup/180")
-            ]]
-            reply_markup = InlineKeyboardMarkup(buttons)
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
             text=script.START_TXT.format(query.from_user.mention, temp.U_NAME, temp.B_NAME),
             reply_markup=reply_markup,
