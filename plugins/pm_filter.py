@@ -5,11 +5,14 @@ from pyrogram import Client, filters
 from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
 import re
+import asyncio
+import ast
 from pyrogram.errors import UserNotParticipant
 from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
 from utils import get_filter_results, get_file_details, is_subscribed, get_poster
 from database.ia_filterdb import Media, get_file_details, get_search_results
 from database.users_chats_db import db
+from database.connections_mdb import active_connection, all_connections, delete_connection, if_active, make_active, make_inactive
 from Script import script
 
 BUTTONS = {}
