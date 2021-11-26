@@ -561,35 +561,24 @@ async def cb_handler(client: Client, query: CallbackQuery):
    
         
         elif query.data == "hamid":
-            await cmd.reply_photo(
-                photo=random.choice(PICS),
-                caption=script.START_MSG.format(cmd.from_user.mention if cmd.from_user else message.chat.title, temp.U_NAME, temp.B_NAME), 
-                parse_mode='html',
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton("Search Here", switch_inline_query_current_chat='')
-                        ]
-                        ,
-                        [
-                        InlineKeyboardButton("🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎", url="https://t.me/dental_case_study")
-                        ]
-                        ,
-                        [
-                            InlineKeyboardButton("About", callback_data="about")
-                        ]
-                        ,
-                        [
-                        InlineKeyboardButton("➕Join 🦷Discussion Group➕", url="https://t.me/dent_tech_for_u")
-                        ]
-                        ,
-                        [                    
-                        InlineKeyboardButton("🎁 Donate & Support 🎁", url="https://t.me/dental_backup/180")
-                        ]
-                    ]              
-                )     
+            buttons = [[
+                InlineKeyboardButton("Search Here", switch_inline_query_current_chat='')
+                ],[
+                InlineKeyboardButton("🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎", url="https://t.me/dental_case_study")
+                ],[
+                InlineKeyboardButton("About", callback_data="about")
+                 ],[
+                InlineKeyboardButton("➕Join 🦷Discussion Group➕", url="https://t.me/dent_tech_for_u")
+                ],[            
+                InlineKeyboardButton("🎁 Donate & Support 🎁", url="https://t.me/dental_backup/180")
+            ]]   
+            reply_markup = InlineKeyboardMarkup(buttons)
+            await query.message.edit_text(
+                text=script.START_TXT.format(query.from_user.mention, temp.U_NAME, temp.B_NAME),
+                reply_markup=reply_markup,
+                parse_mode='html'
             )
-
+                
         elif query.data.startswith("subinps"):
             ident, file_id = query.data.split("#")
             filedetails = await get_file_details(file_id)
