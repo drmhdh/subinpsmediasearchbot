@@ -652,6 +652,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
             parse_mode='html'
             )
         
+    elif query.data == "button":
+        buttons = [[
+            InlineKeyboardButton('👩‍🦯 Back', callback_data='manuelfilter')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_text(
+            text=script.BUTTON_TXT,
+            reply_markup=reply_markup,
+            parse_mode='html'
+        )   
         
     elif query.data.startswith("subinps"):
         ident, file_id = query.data.split("#")
