@@ -76,6 +76,9 @@ async def start(bot, cmd):
                     [    
                         InlineKeyboardButton('𝗝𝗼𝗶𝗻 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎', url='https://t.me/dental_case_study')
                     ]
+                    
+                    
+                    
                     ]
                 await bot.send_cached_media(
                     chat_id=cmd.from_user.id,
@@ -95,7 +98,13 @@ async def start(bot, cmd):
                 [
                     [
                         InlineKeyboardButton("𝗝𝗼𝗶𝗻 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎", url=invite_link.invite_link)
+                    ],
+                    [
+                        InlineKeyboardButton(" 🔄 Try Again", callback_data=f"checksub#{file_id}")
                     ]
+                    
+                    
+                    
                 ]
             )
         )
@@ -119,7 +128,7 @@ async def start(bot, cmd):
                         InlineKeyboardButton("🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎", url="https://t.me/dental_case_study")
                     ],
                     [
-                        InlineKeyboardButton("About", callback_data="about")
+                        InlineKeyboardButton("🚀 Control Panel 🏰", callback_data="about")
                     ],
                     [
                         InlineKeyboardButton("➕Join 🦷Discussion Group➕", url="https://t.me/dent_tech_for_u")
