@@ -562,7 +562,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         
         elif query.data == "hamid":
             buttons = [[
-                InlineKeyboardButton("Search Here", switch_inline_query_current_chat='')
+                InlineKeyboardButton("🔎 Search", switch_inline_query_current_chat='')
                 ],[
                 InlineKeyboardButton("🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎", url="https://t.me/dental_case_study")
                 ],[
@@ -596,7 +596,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     f_caption = f"{files.file_name}"
                 buttons = [
                     [
-                    InlineKeyboardButton('Search again', switch_inline_query_current_chat='')   
+                    InlineKeyboardButton('🔎 Search', switch_inline_query_current_chat='')   
                     ]
                     ,
                     [
@@ -635,7 +635,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     f_caption = f"{title}"
                 buttons = [
                     [
-                    InlineKeyboardButton('Search again', switch_inline_query_current_chat='')
+                    InlineKeyboardButton('🔎 Search', switch_inline_query_current_chat='')
                     ]
                     ,
                     [
