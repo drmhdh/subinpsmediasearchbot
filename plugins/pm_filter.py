@@ -570,7 +570,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 ]
                 ,
                 [                
-                    InlineKeyboardButton('🏠 Home', callback_data='start'),
+                    InlineKeyboardButton('🏠 Home', callback_data='hamid'),
                     InlineKeyboardButton('🔐 Close', callback_data='close_data')
                 ]
                 ]
@@ -582,7 +582,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         (elif query.data == "stats":
             buttons = [
                 [
-                InlineKeyboardButton('👩‍🦯 Back', callback_data='start'),
+                InlineKeyboardButton('👩‍🦯 Back', callback_data='Hamid'),
                 InlineKeyboardButton('♻️', callback_data='rfrsh')
                 ]
                 ]
@@ -605,7 +605,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer("Fetching MongoDb DataBase")
             buttons = [
                 [
-                InlineKeyboardButton('👩‍🦯 Back', callback_data='start'),
+                InlineKeyboardButton('👩‍🦯 Back', callback_data='hamid'),
                 InlineKeyboardButton('♻️', callback_data='rfrsh')
                 ]
                 ]
@@ -624,7 +624,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             
                 )
                 
-        """elif query.data == "start":
+        elif query.data == "hamid":
             buttons = [
                 [            
                 InlineKeyboardButton("Search Here", switch_inline_query_current_chat='')
@@ -651,7 +651,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             text=script.START_MSG.format(query.from_user.mention, temp.U_NAME, temp.B_NAME),
             reply_markup=reply_markup,
             parse_mode='html'
-            ) """
+            ) 
         
     elif query.data == "button":
         buttons = [[
