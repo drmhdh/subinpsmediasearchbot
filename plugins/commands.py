@@ -76,7 +76,7 @@ async def start(bot, cmd):
                     [    
                         InlineKeyboardButton('𝗝𝗼𝗶𝗻 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎', url='https://t.me/dental_case_study')
                     ]
-                    
+                     
                     
                     
                     ]
@@ -93,6 +93,7 @@ async def start(bot, cmd):
         
         
         await bot.send_message(
+            file_id = cmd.text.split("_-_-_-_")
             chat_id=cmd.from_user.id,
             text="**🔊 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗖𝗵𝗮𝗻𝗻𝗲𝗹 🤭** \n \n Are You Looking for References ?! \n Then First Join Our 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎 Channel...😁 Then Try Again... Press /start 😁 and You will Get Your Requests Here...! \n \n 🪐Powered by: \n 🔬 @dent_tech_for_u 📚 ",
      
@@ -100,9 +101,10 @@ async def start(bot, cmd):
                 [
                     [
                         InlineKeyboardButton("𝗝𝗼𝗶𝗻 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎", url=invite_link.invite_link)
+                    ],   
+                    [
+                        InlineKeyboardButton(" 🔄 Try Again", callback_data=f"checksub#{file_id}")
                     ]
-                    
-                    
                     
                     
                 ]
