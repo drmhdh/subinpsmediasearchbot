@@ -554,26 +554,36 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 )
                 return
         elif query.data == "about":
-            buttons = [[
+            buttons = [
+                [
                     InlineKeyboardButton('𝗝𝗼𝗶𝗻 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎', url='https://t.me/dental_case_study')
-                ],[    
+                ]
+                ,
+                [    
                     InlineKeyboardButton('➕ Join 🦷 Discussion Group ➕', url='https://t.me/dent_tech_for_u')
-                ],[
+                ]
+                ,
+                [
                     InlineKeyboardButton('🔮 Status', callback_data='stats')    
-                ],[                
+                ]
+                ,
+                [                
                     InlineKeyboardButton('🏠 Home', callback_data='start'),
                     InlineKeyboardButton('🔐 Close', callback_data='close_data')
-                ]]
+                ]
+                ]
                 
             await query.message.edit(text="<b>Developer : <a href='https://t.me/dent_tech_for_books'>📚🅳🆃 📖 🆁🅾🅾🅼📚</a>\nLanguage : <code>Python3</code>\nLibrary : <a href='https://t.me/dent_tech_library'>🔬𝔻𝕖𝕟𝕥 𝕋𝕖𝕔𝕙 𝕃𝕚𝕓𝕣𝕒𝕣𝕪📚</a>\nDiscussion Group: <a href='https://t.me/dent_tech_for_u'>Click Here</a>\n𝗝𝗼𝗶𝗻 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎: <a href='https://t.me/dental_case_study'>Click Here</a></b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
             
                 )
                 return
         elif query.data == "stats":
-            buttons = [[
+            buttons = [
+                [
                 InlineKeyboardButton('👩‍🦯 Back', callback_data='start'),
                 InlineKeyboardButton('♻️', callback_data='rfrsh')
-            ]]
+                ]
+                ]
             reply_markup = InlineKeyboardMarkup(buttons)
             total = await Media.count_documents()
             users = await db.total_users_count()
@@ -591,10 +601,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 return
         elif query.data == "rfrsh":
             await query.answer("Fetching MongoDb DataBase")
-            buttons = [[
+            buttons = [
+                [
                 InlineKeyboardButton('👩‍🦯 Back', callback_data='start'),
                 InlineKeyboardButton('♻️', callback_data='rfrsh')
-            ]]
+                ]
+                ]
             reply_markup = InlineKeyboardMarkup(buttons)
             total = await Media.count_documents()
             users = await db.total_users_count()
@@ -611,17 +623,27 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 )
                 return   
         elif query.data == "start":
-        buttons = [[            
+        buttons = [
+            [            
             InlineKeyboardButton("Search Here", switch_inline_query_current_chat='')
-            ],[  
+            ]
+            ,
+            [  
             InlineKeyboardButton("🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎", url="https://t.me/dental_case_study")
-            ],[               
+            ]
+            ,
+            [               
             InlineKeyboardButton("About", callback_data="about")
-            ],[   
+            ]
+            ,
+            [   
             InlineKeyboardButton("➕Join 🦷Discussion Group➕", url="https://t.me/dent_tech_for_u")
-            ],[        
+            ]
+            ,
+            [        
             InlineKeyboardButton("🎁 Donate & Support 🎁", url="https://t.me/dental_backup/180")
-        ]]
+            ]
+            ]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
             text=script.START_TXT.format(query.from_user.mention, temp.U_NAME, temp.B_NAME),
