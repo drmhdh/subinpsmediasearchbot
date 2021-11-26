@@ -580,7 +580,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         InlineKeyboardButton("➕Join 🦷Discussion Group➕", url="https://t.me/dent_tech_for_u")
                         ]
                         ,
-                        ]                    
+                        [                    
                         InlineKeyboardButton("🎁 Donate & Support 🎁", url="https://t.me/dental_backup/180")
                         ]
                     ]              
