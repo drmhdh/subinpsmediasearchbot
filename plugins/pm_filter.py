@@ -579,7 +579,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             
                 
                 
-        """(elif query.data == "stats":
+        (elif query.data == "stats":
             buttons = [
                 [
                 InlineKeyboardButton('👩‍🦯 Back', callback_data='start'),
@@ -597,7 +597,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.edit_text(
                 text=script.STATUS_TXT.format(total, users, chats, monsize, free),
                 reply_markup=reply_markup,
-                parse_mode='html' """
+                parse_mode='html' 
                 )
                 
                 
@@ -624,7 +624,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             
                 )
                 
-        elif query.data == "start":
+        """elif query.data == "start":
             buttons = [
                 [            
                 InlineKeyboardButton("Search Here", switch_inline_query_current_chat='')
@@ -651,7 +651,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             text=script.START_MSG.format(query.from_user.mention, temp.U_NAME, temp.B_NAME),
             reply_markup=reply_markup,
             parse_mode='html'
-            )
+            ) """
         
     elif query.data == "button":
         buttons = [[
