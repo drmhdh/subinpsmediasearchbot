@@ -621,14 +621,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 text=script.STATUS_TXT.format(total, users, chats, monsize, free),
                 reply_markup=reply_markup,
                 parse_mode='html'
-            
                 )
          
         
-        
-        
-        
-        
+               
+             
     
         
     elif query.data.startswith("subinps"):
@@ -663,6 +660,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 caption=f_caption,
                 reply_markup=InlineKeyboardMarkup(buttons)
                 )
+    
     elif query.data.startswith("checksub"):
         if AUTH_CHANNEL and not await is_subscribed(client, query):
             await query.answer("I Like Your Smartness, But Don't Be Oversmart 😒",show_alert=True)
