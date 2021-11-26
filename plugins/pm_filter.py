@@ -597,8 +597,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 reply_markup=reply_markup,
                 parse_mode='html'
             
-                )
-                return
+                
+                
         elif query.data == "rfrsh":
             await query.answer("Fetching MongoDb DataBase")
             buttons = [
