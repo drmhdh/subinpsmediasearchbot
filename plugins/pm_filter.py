@@ -596,7 +596,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 text=script.STATUS_TXT.format(total, users, chats, monsize, free),
                 reply_markup=reply_markup,
                 parse_mode='html'
-            
+                )
                 
                 
         elif query.data == "rfrsh":
@@ -621,7 +621,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 parse_mode='html'
             
                 )
-                return   
+                
         elif query.data == "start":
         buttons = [
             [            
@@ -649,7 +649,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             text=script.START_TXT.format(query.from_user.mention, temp.U_NAME, temp.B_NAME),
             reply_markup=reply_markup,
             parse_mode='html'
-         
+            )
         
         
     elif query.data.startswith("subinps"):
