@@ -579,7 +579,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             
                 
                 
-        """elif query.data == "stats":
+        """(elif query.data == "stats":
             buttons = [
                 [
                 InlineKeyboardButton('👩‍🦯 Back', callback_data='start'),
@@ -599,7 +599,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 reply_markup=reply_markup,
                 parse_mode='html'
                 )"""
-                
+                )
                 
         elif query.data == "rfrsh":
             await query.answer("Fetching MongoDb DataBase")
