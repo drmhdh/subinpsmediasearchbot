@@ -624,47 +624,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
             
                 )
          
-        elif query.data == "button":
-            buttons = [
-                [
-                InlineKeyboardButton('👩‍🦯 Back', callback_data='manuelfilter')
-                ]
-                ]
-            reply_markup = InlineKeyboardMarkup(buttons)
-            await query.message.edit_text(
-                text=script.BUTTON_TXT,
-                reply_markup=reply_markup,
-                parse_mode='html'
-                )   
         
-        elif query.data == "hamid":
-            buttons = [
-                [            
-                InlineKeyboardButton("Search Here", switch_inline_query_current_chat='')
-                ]
-                ,
-                [  
-                InlineKeyboardButton("🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎", url="https://t.me/dental_case_study")
-                ]
-                ,
-                [               
-                InlineKeyboardButton("About", callback_data="about")
-                ]
-                ,
-                [   
-                InlineKeyboardButton("➕Join 🦷Discussion Group➕", url="https://t.me/dent_tech_for_u")
-                ]
-                ,
-                [        
-                InlineKeyboardButton("🎁 Donate & Support 🎁", url="https://t.me/dental_backup/180")
-                ]
-                ]
-            reply_markup = InlineKeyboardMarkup(buttons)
-            await query.message.edit_text(
-                text=script.START_MSG.format(query.from_user.mention, temp.U_NAME, temp.B_NAME),
-                reply_markup=reply_markup,
-                parse_mode='html'
-                ) 
+        
+        
+        
         
     
         
