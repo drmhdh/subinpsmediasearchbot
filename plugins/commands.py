@@ -90,8 +90,8 @@ async def start(bot, cmd):
             await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")
     elif len(cmd.command) > 1 and cmd.command[1] == 'subscribe':
         invite_link = await bot.create_chat_invite_link(int(AUTH_CHANNEL))
-        ident, file_id = cmd.text.split("_-_-_-_")
-        filedetails = await get_file_details(file_id)
+        
+        
         await bot.send_message(
             chat_id=cmd.from_user.id,
             text="**🔊 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗖𝗵𝗮𝗻𝗻𝗲𝗹 🤭** \n \n Are You Looking for References ?! \n Then First Join Our 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎 Channel...😁 Then Try Again... Press /start 😁 and You will Get Your Requests Here...! \n \n 🪐Powered by: \n 🔬 @dent_tech_for_u 📚 ",
@@ -100,16 +100,31 @@ async def start(bot, cmd):
                 [
                     [
                         InlineKeyboardButton("𝗝𝗼𝗶𝗻 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎", url=invite_link.invite_link)
-                    ],
-                    [
-                        InlineKeyboardButton(" 🔄 Try Again", callback_data=f"checksub#{file_id}")
                     ]
+                    
                     
                     
                     
                 ]
             )
         )
+    
+        if message.command[1] != "subscribe":
+            btn.append([InlineKeyboardButton(" 🔄 Try Again", callback_data=f"checksub#{message.command[1]}")])
+        await client.send_message(
+            chat_id=message.from_user.id,
+            text="**🔊 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗖𝗵𝗮𝗻𝗻𝗲𝗹 🤭** \n \n Are You Looking for References ?! \n Then First Join Our 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎 Channel...😁 Then Try Again... Press /start 😁 and You will Get Your Requests Here...! \n \n 🪐Powered by: \n 🔬 @dent_tech_for_u 📚",
+            reply_markup=InlineKeyboardMarkup(btn),
+            
+            parse_mode="markdown",
+            
+            )
+    
+    
+    
+    
+    
+    
     else:
         await cmd.reply_photo(
             photo=random.choice(PICS),
