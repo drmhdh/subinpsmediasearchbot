@@ -686,29 +686,29 @@ async def cb_handler(client: Client, query: CallbackQuery):
         if AUTH_CHANNEL and not await is_subscribed(client, query):
             await query.answer("I Like Your Smartness, But Don't Be Oversmart 😒",show_alert=True)
             return
-         ident, file_id = query.data.split("#")
-         filedetails = await get_file_details(file_id)
-         for files in filedetails:
-             title = files.file_name
-             size=get_size(files.file_size)
-             f_caption=files.caption
-             if CUSTOM_FILE_CAPTION:
-                 try:
-                     f_caption=CUSTOM_FILE_CAPTION.format(file_name=title, file_size=size, file_caption=f_caption)
-                 except Exception as e:
-                     print(e)
-                     f_caption=f_caption
-             if f_caption is None:
-                 f_caption = f"{title}"
-             buttons = [
-                 [
-                     InlineKeyboardButton('📚🅳🆃 📖 🆁🅾🅾🅼📚', url='https://t.me/dent_tech_for_books'),
-                     InlineKeyboardButton('𝗝𝗼𝗶𝗻 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎', url='https://t.me/dental_case_study')
-                 ]
-                 ]
+        ident, file_id = query.data.split("#")
+        filedetails = await get_file_details(file_id)
+        for files in filedetails:
+            title = files.file_name
+            size=get_size(files.file_size)
+            f_caption=files.caption
+            if CUSTOM_FILE_CAPTION:
+                try:
+                    f_caption=CUSTOM_FILE_CAPTION.format(file_name=title, file_size=size, file_caption=f_caption)
+                except Exception as e:
+                    print(e)
+                    f_caption=f_caption
+            if f_caption is None:
+                f_caption = f"{title}"
+            buttons = [
+                [
+                    InlineKeyboardButton('📚🅳🆃 📖 🆁🅾🅾🅼📚', url='https://t.me/dent_tech_for_books'),
+                    InlineKeyboardButton('𝗝𝗼𝗶𝗻 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎', url='https://t.me/dental_case_study')
+                ]
+                ]
                 
-             await query.answer()
-             await client.send_cached_media(
+            await query.answer()
+            await client.send_cached_media(
                   chat_id=query.from_user.id,
                   file_id=file_id,
                   caption=f_caption,
