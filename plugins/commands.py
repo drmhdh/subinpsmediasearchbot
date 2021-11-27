@@ -265,10 +265,11 @@ async def start(bot, cmd):
     usr_cmdall1 = cmd.text
     if usr_cmdall1.startswith("/search"):
         await bot.send_message(
+            text="<b<Type Your Keyword to Search...!</b>",
             buttons = [
                 [
                     InlineKeyboardButton("🔎 Search", switch_inline_query_current_chat='')
                 ]
                 ]
-            await query.message.edit(text="<b<Type Your Keyword to Search...!</b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)    
+                
         )
