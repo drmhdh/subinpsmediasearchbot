@@ -266,7 +266,7 @@ async def search(bot, cmd):
     if usr_cmdall1.startswith("/search"):
         await bot.send_message(
             chat_id=cmd.from_user.id,
-            text="<b<Type Your Keyword to Search...!</b>",
+            text="**Type Your Keyword to Search...!**",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
