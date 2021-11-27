@@ -264,7 +264,7 @@ async def bot_info(bot, message):
 async def search(bot, cmd):
     usr_cmdall1 = cmd.text
     if usr_cmdall1.startswith("/search"):
-        await client.send_message(
+        await bot.send_message(
             chat_id=cmd.from_user.id,
             text=(f"</b>Helo, {cmd.from_user.mention} \n🕹  Press Search Button and Type Your Keyword to Search Available References📖</b>"),
             reply_markup=InlineKeyboardMarkup(
