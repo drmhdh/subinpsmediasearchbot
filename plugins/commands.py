@@ -270,5 +270,5 @@ async def start(bot, cmd):
                     InlineKeyboardButton("🔎 Search", switch_inline_query_current_chat='')
                 ]
                 ]
-            await query.message.edit(text=Type Your Keyword to Search...!)    
+            await query.message.edit(text="<b<Type Your Keyword to Search...!</b>")    
         )
