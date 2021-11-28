@@ -8,6 +8,8 @@ from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION,
 from utils import Media, get_file_details, get_size
 from pyrogram.errors import UserNotParticipant
 from utils import get_size, is_subscribed, temp
+from database.ia_filterdb import Media, get_file_details, unpack_new_file_id
+from database.users_chats_db import db
 import re
 logger = logging.getLogger(__name__)
 
