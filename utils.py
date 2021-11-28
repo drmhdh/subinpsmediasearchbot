@@ -3,6 +3,7 @@ import base64
 import logging
 from struct import pack
 from pyrogram.types import Message
+from typing import Union
 from database.users_chats_db import db
 from pyrogram.errors import InputUserDeactivated, UserNotParticipant, FloodWait, UserIsBlocked, PeerIdInvalid
 from pyrogram.errors import UserNotParticipant
