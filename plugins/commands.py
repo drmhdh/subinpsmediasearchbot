@@ -49,7 +49,7 @@ async def start(bot, cmd):
                 )
             )
         
-        await cmd.reply(script.START_MSG.format(cmd.from_user.mention if cmd.from_user else cmd.chat.title, temp.U_NAME, temp.B_NAME), disable_web_page_preview=True)
+        
         await asyncio.sleep(2) # 😢 https://github.com/EvamariaTG/EvaMaria/blob/master/plugins/p_ttishow.py#L17 😬 wait a bit, before checking.
         if not await db.get_chat(cmd.chat.id):
             total=await bot.get_chat_members_count(cmd.chat.id)
