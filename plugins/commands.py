@@ -17,6 +17,35 @@ logger = logging.getLogger(__name__)
 
 @Client.on_message(filters.command("start"))
 async def start(bot, cmd):
+    
+    
+     if cmd.chat.type in ['group', 'supergroup']:
+        buttons = [[
+            InlineKeyboardButton('➕ Join 🦷 Discussion Group ➕', url='http://t.me/dent_tech_for_u')
+            ],[
+            InlineKeyboardButton('🔍 Search', switch_inline_query_current_chat=''),
+            InlineKeyboardButton('🤖 Updates', url='https://t.me/dent_tech_for_books')
+            ],[
+
+            InlineKeyboardButton('😊 About', callback_data='about')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        parse_mode='html',
+        
+        await cmd.reply(script.START_TXT.format(cmd.from_user.mention if cmd.from_user else cmd.chat.title, temp.U_NAME, temp.B_NAME), reply_markup=reply_markup, disable_web_page_preview=True)
+        await asyncio.sleep(2) # 😢 https://github.com/EvamariaTG/EvaMaria/blob/master/plugins/p_ttishow.py#L17 😬 wait a bit, before checking.
+        if not await db.get_chat(cmd.chat.id):
+            total=await bot.get_chat_members_count(cmd.chat.id)
+            await client.send_message(LOG_CHANNEL, script.LOG_TEXT_G.format(cmd.chat.title, cmd.chat.id, total, "Unknown"))       
+            await db.add_chat(cmd.chat.id, cmd.chat.title)
+        return 
+    if not await db.is_user_exist(cmd.from_user.id):
+        await db.add_user(cmd.from_user.id, cmd.from_user.first_name)
+        await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(cmd.from_user.id, cmd.from_user.mention))
+    
+    
+    
+    
     usr_cmdall1 = cmd.text
     if usr_cmdall1.startswith("/start subinps"):
         if AUTH_CHANNEL:
@@ -153,15 +182,7 @@ async def start(bot, cmd):
             parse_mode='html',  
             
             
-            await asyncio.sleep(2) # 😢 https://github.com/EvamariaTG/EvaMaria/blob/master/plugins/p_ttishow.py#L17 😬 wait a bit, before checking.
-            if not await db.get_chat(cmd.chat.id):
-                total=await bot.get_chat_members_count(cmd.chat.id)
-                await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_G.format(cmd.chat.title, cmd.chat.id, total, "Unknown"))       
-                await db.add_chat(cmd.chat.id, cmd.chat.title)
-            return 
-        if not await db.is_user_exist(cmd.from_user.id):
-            await db.add_user(cmd.from_user.id, cmd.from_user.first_name)
-            await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(cmd.from_user.id, cmd.from_user.mention))
+            
             
                 reply_markup=InlineKeyboardMarkup(
                     [
