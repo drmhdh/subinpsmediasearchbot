@@ -3,6 +3,7 @@ import logging
 import random
 from Script import script
 from pyrogram import Client, filters
+from pyrogram.errors.exceptions.bad_request_400 import ChatAdminRequired
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION, PICS, LOG_CHANNEL
 from utils import Media, get_file_details, get_size
@@ -46,14 +47,7 @@ async def start(bot, cmd):
                         ]
                     ),
                     parse_mode="markdown",
-                    if not await db.get_chat(message.chat.id):
-                        total=await client.get_chat_members_count(message.chat.id)
-                        await client.send_message(LOG_CHANNEL, script.LOG_TEXT_G.format(message.chat.title, message.chat.id, total, "Unknown"))       
-                        await db.add_chat(message.chat.id, message.chat.title)
-                    return 
-                if not await db.is_user_exist(message.from_user.id):
-                    await db.add_user(message.from_user.id, message.from_user.first_name)
-                    await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
+                    
                     
                     
                 )
@@ -152,16 +146,22 @@ async def start(bot, cmd):
     
     
     else:
+        await asyncio.sleep(2)
+        if not await db.get_chat(message.chat.id):
+            total=await client.get_chat_members_count(message.chat.id)
+            await client.send_message(LOG_CHANNEL, script.LOG_TEXT_G.format(message.chat.title, message.chat.id, total, "Unknown"))       
+            await db.add_chat(message.chat.id, message.chat.title)
+        return 
+    if not await db.is_user_exist(message.from_user.id):
+        await db.add_user(message.from_user.id, message.from_user.first_name)
+        await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
+            
+        
+        
         await cmd.reply_photo(
             photo=random.choice(PICS),
-            
             caption=script.START_MSG.format(cmd.from_user.mention if cmd.from_user else message.chat.title, temp.U_NAME, temp.B_NAME), 
-            
-            
-            
-            parse_mode='html',
-            
-            
+            parse_mode='html',                  
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
