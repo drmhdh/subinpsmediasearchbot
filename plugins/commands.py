@@ -20,17 +20,34 @@ async def start(bot, cmd):
     
     
     if cmd.chat.type in ['group', 'supergroup']:
-        buttons = [[
-            InlineKeyboardButton('➕ Join 🦷 Discussion Group ➕', url='http://t.me/dent_tech_for_u')
-            ],[
-            InlineKeyboardButton('🔍 Search', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('🤖 Updates', url='https://t.me/dent_tech_for_books')
-            ],[
-
-            InlineKeyboardButton('😊 About', callback_data='about')
-        ]]
-        reply_markup = InlineKeyboardMarkup(buttons)
-        parse_mode='html',
+        await cmd.reply_photo(
+            photo=random.choice(PICS),
+            caption=script.START_MSG.format(cmd.from_user.mention if cmd.from_user else message.chat.title, temp.U_NAME, temp.B_NAME), 
+            parse_mode='html',  
+            
+            
+            
+            
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton("🔎 Search", switch_inline_query_current_chat='')
+                        ],
+                        [
+                            InlineKeyboardButton("🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎", url="https://t.me/dental_case_study")
+                        ],
+                        [
+                            InlineKeyboardButton("🚀 Control Panel 🏰", callback_data="about")
+                        ],
+                        [
+                            InlineKeyboardButton("➕Join 🦷Discussion Group➕", url="https://t.me/dent_tech_for_u")
+                        ],
+                        [
+                            InlineKeyboardButton("🎁 Donate & Support 🎁", url="https://t.me/dental_backup/180")
+                        ]
+                    ]
+                )
+            )
         
         await cmd.reply(script.START_MSG.format(cmd.from_user.mention if cmd.from_user else cmd.chat.title, temp.U_NAME, temp.B_NAME), reply_markup=reply_markup, disable_web_page_preview=True)
         await asyncio.sleep(2) # 😢 https://github.com/EvamariaTG/EvaMaria/blob/master/plugins/p_ttishow.py#L17 😬 wait a bit, before checking.
