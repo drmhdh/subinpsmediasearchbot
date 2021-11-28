@@ -148,14 +148,14 @@ async def start(bot, cmd):
     
     else:
         await asyncio.sleep(2)
-        if not await db.get_chat(message.chat.id):
-            total=await client.get_chat_members_count(message.chat.id)
-            await client.send_message(LOG_CHANNEL, script.LOG_TEXT_G.format(message.chat.title, message.chat.id, total, "Unknown"))       
-            await db.add_chat(message.chat.id, message.chat.title)
+        if not await db.get_chat(cmd.chat.id):
+            total=await client.get_chat_members_count(cmd.chat.id)
+            await client.send_message(LOG_CHANNEL, script.LOG_TEXT_G.format(cmd.chat.title, cmd.chat.id, total, "Unknown"))       
+            await db.add_chat(cmd.chat.id, cmd.chat.title)
         return 
     if not await db.is_user_exist(message.from_user.id):
-        await db.add_user(message.from_user.id, message.from_user.first_name)
-        await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
+        await db.add_user(cmd.from_user.id, cmd.from_user.first_name)
+        await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(cmd.from_user.id, cmd.from_user.mention))
             
         
         
