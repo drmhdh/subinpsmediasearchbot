@@ -147,7 +147,7 @@ async def start(bot, cmd):
     
     
     else:
-        await message.reply
+        await cmd.reply
         await asyncio.sleep(2)
         if not await db.get_chat(cmd.chat.id):
             total=await bot.get_chat_members_count(cmd.chat.id)
