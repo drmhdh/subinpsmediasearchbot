@@ -342,7 +342,7 @@ def extract_user(message: Message) -> Union[int, str]:
         user_first_name = message.reply_to_message.from_user.first_name
 
         
-     elif len(message.command) > 1:
+    elif len(message.command) > 1:
         if (
             len(message.entities) > 1 and
             message.entities[1].type == "text_mention"
