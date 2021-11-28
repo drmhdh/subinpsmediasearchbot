@@ -147,23 +147,26 @@ async def start(bot, cmd):
     
     
     else:
-        await cmd.reply
-        await asyncio.sleep(2)
-        if not await db.get_chat(cmd.chat.id):
-            total=await bot.get_chat_members_count(cmd.chat.id)
-            await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_G.format(cmd.chat.title, cmd.chat.id, total, "Unknown"))       
-            await db.add_chat(cmd.chat.id, cmd.chat.title)
-        return 
-    if not await db.is_user_exist(cmd.from_user.id):
-        await db.add_user(cmd.from_user.id, cmd.from_user.first_name)
-        await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(cmd.from_user.id, cmd.from_user.mention))
-            
-        
-        
         await cmd.reply_photo(
             photo=random.choice(PICS),
             caption=script.START_MSG.format(cmd.from_user.mention if cmd.from_user else message.chat.title, temp.U_NAME, temp.B_NAME), 
-            parse_mode='html',                  
+            
+            
+            
+            
+            parse_mode='html',  
+            
+            await message.reply(script.START_TXT.format(message.from_user.mention if message.from_user else message.chat.title, temp.U_NAME, temp.B_NAME), reply_markup=reply_markup, disable_web_page_preview=True)
+            await asyncio.sleep(2) # 😢 https://github.com/EvamariaTG/EvaMaria/blob/master/plugins/p_ttishow.py#L17 😬 wait a bit, before checking.
+            if not await db.get_chat(message.chat.id):
+                total=await client.get_chat_members_count(message.chat.id)
+                await client.send_message(LOG_CHANNEL, script.LOG_TEXT_G.format(message.chat.title, message.chat.id, total, "Unknown"))       
+                await db.add_chat(message.chat.id, message.chat.title)
+            return 
+        if not await db.is_user_exist(message.from_user.id):
+            await db.add_user(message.from_user.id, message.from_user.first_name)
+            await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
+            
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
