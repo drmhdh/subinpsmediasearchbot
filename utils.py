@@ -330,3 +330,49 @@ def get_size(size):
         i += 1
         size /= 1024.0
     return "%.2f %s" % (size, units[i])
+
+
+def extract_user(message: Message) -> Union[int, str]:
+    """extracts the user from a message"""
+    # https://github.com/SpEcHiDe/PyroGramBot/blob/f30e2cca12002121bad1982f68cd0ff9814ce027/pyrobot/helper_functions/extract_user.py#L7
+    user_id = None
+    user_first_name = None
+    if message.reply_to_message:
+        user_id = message.reply_to_message.from_user.id
+        user_first_name = message.reply_to_message.from_user.first_name
+
+        
+     elif len(message.command) > 1:
+        if (
+            len(message.entities) > 1 and
+            message.entities[1].type == "text_mention"
+        ):
+           
+            required_entity = message.entities[1]
+            user_id = required_entity.user.id
+            user_first_name = required_entity.user.first_name
+        else:
+            user_id = message.command[1]
+            # don't want to make a request -_-
+            user_first_name = user_id
+        try:
+            user_id = int(user_id)
+        except ValueError:
+            pass
+    else:
+        user_id = message.from_user.id
+        user_first_name = message.from_user.first_name
+    return (user_id, user_first_name)
+
+def list_to_str(k):
+    if not k:
+        return "N/A"
+    elif len(k) == 1:
+        return str(k[0])
+    elif MAX_LIST_ELM:
+        k = k[:int(MAX_LIST_ELM)]
+        return ' '.join(f'{elem}, ' for elem in k)
+    else:
+        return ' '.join(f'{elem}, ' for elem in k)
+
+        
