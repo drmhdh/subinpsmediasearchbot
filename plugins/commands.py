@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 async def start(bot, cmd):
     
     
-     if cmd.chat.type in ['group', 'supergroup']:
+    if cmd.chat.type in ['group', 'supergroup']:
         buttons = [[
             InlineKeyboardButton('➕ Join 🦷 Discussion Group ➕', url='http://t.me/dent_tech_for_u')
             ],[
