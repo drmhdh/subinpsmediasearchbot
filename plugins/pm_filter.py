@@ -576,7 +576,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.edit_text(
                 text=script.START_MSG.format(query.from_user.mention, temp.U_NAME, temp.B_NAME),
                 reply_markup=reply_markup,
-                disable_web_page_preview=True
+                
                 parse_mode='html'
             )
                 
