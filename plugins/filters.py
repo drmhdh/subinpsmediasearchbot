@@ -228,7 +228,7 @@ async def deletefilter(bot, cmd):
 
     query = text.lower()
 
-    await delete_filter(message, query, grp_id)
+    await delete_filter(cmd, query, grp_id)
         
 
 @Client.on_message(filters.command('delall') & filters.incoming)
