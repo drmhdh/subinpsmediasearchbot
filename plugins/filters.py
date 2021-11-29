@@ -230,11 +230,11 @@ async def deletefilter(bot, cmd):
 
     query = text.lower()
 
-    await delete_filter(message, query, grp_id)
+    await delete_filter(cmd, query, grp_id)
         
 
 @Client.on_message(filters.command('delall') & filters.incoming)
-async def delallconfirm(bot, mcmd):
+async def delallconfirm(bot, cmd):
     userid = cmd.from_user.id if cmd.from_user else None
     if not userid:
         return await cmd.reply(f"You are anonymous admin. Use /connect {cmd.chat.id} in PM")
