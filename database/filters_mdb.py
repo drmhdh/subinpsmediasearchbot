@@ -76,7 +76,7 @@ async def delete_filter(cmd, text, group_id):
         await cmd.reply_text("Couldn't find that filter!", quote=True)
 
 
-async def del_all(message, group_id, title):
+async def del_all(cmd, group_id, title):
     if str(group_id) not in mydb.list_collection_names():
         await cmd.edit_text(f"Nothing to remove in {title}!")
         return
