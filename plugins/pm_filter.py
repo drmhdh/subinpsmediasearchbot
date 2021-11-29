@@ -26,18 +26,7 @@ BOT = {}
 
 @Client.on_message(filters.group & filters.text & ~filters.edited & filters.incoming)
 
-async def auto_filter(client, msg, spoll=False):
-    if not spoll:
-        message = msg
-        if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
-            return
-        if 2 < len(message.text) < 100:
-            search = message.text
-            files, offset, total_results = await get_search_results(search.lower(), offset=0, filter=True)
-    
-    else:
-        message = msg.mespsage.reply_to_message # msg will be callback query
-        search, files, offset, total_results = spoll  
+
    
 
 
@@ -699,7 +688,20 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 reply_markup=reply_markup,
                 parse_mode='html'
                 )
-   
+
+ async def auto_filter(client, msg, spoll=False):
+    if not spoll:
+        message = msg
+        if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
+            return
+        if 2 < len(message.text) < 100:
+            search = message.text
+            files, offset, total_results = await get_search_results(search.lower(), offset=0, filter=True)
+    
+    else:
+        message = msg.mespsage.reply_to_message # msg will be callback query
+        search, files, offset, total_results = spoll             
+            
         
         elif query.data == "hamid":
             buttons = [[
