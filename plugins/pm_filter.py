@@ -797,13 +797,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
     else:
         await query.answer("It Will Not Work for You, as It was Not Requested by You 😒",show_alert=True) 
 
-async def auto_filter( client, msg):
+async def auto_filter(client, msg):
     
     message = msg
     if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)",  message.text):
         
         search = message.text
-        
+    return
 
                   
 
