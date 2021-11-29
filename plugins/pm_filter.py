@@ -63,8 +63,8 @@ async def give_filter(client, message):
                     logger.exception(e)
                 break 
     
-    try:
-        await auto_filter(client, message)
+        
+             
 
 
 
