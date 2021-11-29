@@ -263,7 +263,11 @@ async def auto_filter(client, msg, spoll=False):
         if 2 < len(message.text) < 100:
             search = message.text
             files, offset, total_results = await get_search_results(search.lower(), offset=0, filter=True)
-            
+    else:
+        return
+else:
+    message = msg.message.reply_to_message # msg will be callback query
+    search, files, offset, total_results = spoll  
 
 
 async def cb_handler(client: Client, query: CallbackQuery):
