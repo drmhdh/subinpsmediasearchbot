@@ -63,8 +63,8 @@ async def give_filter(client,message):
                     logger.exception(e)
                 break 
     
-    """else:
-        await auto_filter(client, message)"""      
+    else:
+        await auto_filter(client, message)
 
 
 @Client.on_callback_query(filters.regex(r"^next"))
@@ -707,6 +707,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
   
 
 
+async def auto_filter( client, msg):
+    
+    message = msg
+    if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)",  message.text):
+        return
+    if 2 < len(message.text) < 100:
+        search = message.text
+        files, offset, total_results = await get_search_results(search.lower(), offset=0, filter=True)
+
+            
         elif query.data.startswith("subinps"):
             ident, file_id = query.data.split("#")
             filedetails = await get_file_details(file_id)
