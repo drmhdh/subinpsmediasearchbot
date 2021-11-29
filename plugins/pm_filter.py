@@ -324,9 +324,9 @@ def split_list(l, n):
 
 
 
-@Client.on_callback_query(filters.group & filters.text & ~filters.edited & filters.incoming)
+@Client.on_callback_query()
 
-async def auto_filter(client, msg, spoll=False):
+"""async def auto_filter(client, msg, spoll=False):
     if not spoll:
         message = msg
         if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
@@ -360,7 +360,7 @@ async def auto_filter(client, msg, spoll=False):
                 ),
             ]
             for file in files
-        ]
+        ]"""
 
 
 
