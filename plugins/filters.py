@@ -117,7 +117,7 @@ async def addfilter(bot, cmd):
 
 
 @Client.on_message(filters.command(['viewfilters', 'filters']) & filters.incoming)
-async def get_all(client, message):
+async def get_all(bot, cmd):
     
     chat_type = cmd.chat.type
     userid = cmd.from_user.id if cmd.from_user else None
@@ -181,7 +181,7 @@ async def get_all(client, message):
     )
         
 @Client.on_message(filters.command('del') & filters.incoming)
-async def deletefilter(client, message):
+async def deletefilter(bot, cmd):
     userid = cmd.from_user.id if cmd.from_user else None
     if not userid:
         return await cmd.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
@@ -192,7 +192,7 @@ async def deletefilter(client, message):
         if grpid is not None:
             grp_id = grpid
             try:
-                chat = await client.get_chat(grpid)
+                chat = await bot.get_chat(grpid)
                 title = chat.title
             except:
                 await cmd.reply_text("Make sure I'm present in your group!!", quote=True)
@@ -228,14 +228,14 @@ async def deletefilter(client, message):
 
     query = text.lower()
 
-    await delete_filter(message, query, grp_id)
+    await delete_filter(cmd, query, grp_id)
         
 
 @Client.on_message(filters.command('delall') & filters.incoming)
-async def delallconfirm(client, message):
+async def delallconfirm(bot, mcmd):
     userid = cmd.from_user.id if cmd.from_user else None
     if not userid:
-        return await cmd.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
+        return await cmd.reply(f"You are anonymous admin. Use /connect {cmd.chat.id} in PM")
     chat_type = cmd.chat.type
 
     if chat_type == "private":
@@ -259,7 +259,7 @@ async def delallconfirm(client, message):
     else:
         return
 
-    st = await client.get_chat_member(grp_id, userid)
+    st = await bot.get_chat_member(grp_id, userid)
     if (st.status == "creator") or (str(userid) in ADMINS):
         await cmd.reply_text(
             f"This will delete all filters from '{title}'.\nDo you want to continue??",
