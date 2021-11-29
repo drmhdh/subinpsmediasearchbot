@@ -136,8 +136,8 @@ async def give_filter(client, message):
                         )
                 
     
-    else:
-        await auto_filter(client, message)
+        else:
+            await auto_filter(client, message)
 
 
 
