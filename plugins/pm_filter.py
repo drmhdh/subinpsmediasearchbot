@@ -63,8 +63,8 @@ async def give_filter(client,message):
                     logger.exception(e)
                 break 
     
-    else:
-        await auto_filter(client, message)      
+    """else:
+        await auto_filter(client, message)"""      
 
 
 @Client.on_callback_query(filters.regex(r"^next"))
@@ -793,9 +793,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
             except:
                 await query.message.delete()
 
-async def auto_filter( client, msg, spoll=False):
+"""async def auto_filter( client, msg, spoll=False):
     if not spoll:
-        message = msg
+        message = msg"""
         """if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)",  message.text):
             return"""
         """if 2 < len(message.text) < 100:
