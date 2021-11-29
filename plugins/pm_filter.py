@@ -25,6 +25,46 @@ BUTTONS = {}
 BOT = {}
 
 @Client.on_message(filters.group & filters.text & ~filters.edited & filters.incoming)
+
+async def auto_filter(client, msg, spoll=False):
+    if not spoll:
+        message = msg
+        if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
+            return
+        if 2 < len(message.text) < 100:
+            search = message.text
+            files, offset, total_results = await get_search_results(search.lower(), offset=0, filter=True)
+    
+    else:
+        message = msg.mespsage.reply_to_message # msg will be callback query
+        search, files, offset, total_results = spoll  
+    if SINGLE_BUTTON:
+        btn = [
+            [
+                InlineKeyboardButton(
+                    text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'files#{file.file_id}'
+                ),
+            ]
+            for file in files
+        ]
+    else:
+        btn = [
+            [
+                InlineKeyboardButton(
+                    text=f"{file.file_name}",
+                    callback_data=f'files#{file.file_id}',
+                ),
+                InlineKeyboardButton(
+                    text=f"{get_size(file.file_size)}",
+                    callback_data=f'files_#{file.file_id}',
+                ),
+            ]
+            for file in files
+        ]
+
+
+
+
 async def give_filter(client,message):
     group_id = message.chat.id
     name = message.text
@@ -326,41 +366,6 @@ def split_list(l, n):
 
 @Client.on_callback_query()
 
-async def auto_filter(client, msg, spoll=False):
-    if not spoll:
-        message = msg
-        if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
-            return
-        if 2 < len(message.text) < 100:
-            search = message.text
-            files, offset, total_results = await get_search_results(search.lower(), offset=0, filter=True)
-    
-    else:
-        message = msg.mespsage.reply_to_message # msg will be callback query
-        search, files, offset, total_results = spoll  
-    if SINGLE_BUTTON:
-        btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'files#{file.file_id}'
-                ),
-            ]
-            for file in files
-        ]
-    else:
-        btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"{file.file_name}",
-                    callback_data=f'files#{file.file_id}',
-                ),
-                InlineKeyboardButton(
-                    text=f"{get_size(file.file_size)}",
-                    callback_data=f'files_#{file.file_id}',
-                ),
-            ]
-            for file in files
-        ]
 
 
 
