@@ -24,47 +24,7 @@ from database.filters_mdb import(
 BUTTONS = {}
 BOT = {}
 
-@Client.on_message(filters.text)
-"""((async def give_filter(client, message):
-    group_id = message.chat.id
-    name = message.text
-    keywords = await get_filters(group_id)
-    for keyword in reversed(sorted(keywords, key=len)):
-        pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"
-        if re.search(pattern, name, flags=re.IGNORECASE):
-            reply_text, btn, alert, fileid = await find_filter(group_id, keyword)
-            if reply_text:
-                reply_text = reply_text.replace("\\n", "\n").replace("\\t", "\t")
-            if btn is not None:
-                try:
-                    if fileid == "None":
-                        if btn == "[]":
-                            await message.reply_text(reply_text, disable_web_page_preview=True)
-                        else:
-                            button = eval(btn)
-                            await message.reply_text(
-                                reply_text,
-                                disable_web_page_preview=True,
-                                reply_markup=InlineKeyboardMarkup(button)
-                            )
-                    elif btn == "[]":
-                        await message.reply_cached_media(
-                            fileid,
-                            caption=reply_text or ""
-                        )
-                    else:
-                        button = eval(btn) 
-                        await message.reply_cached_media(
-                            fileid,
-                            caption=reply_text or "",
-                            reply_markup=InlineKeyboardMarkup(button)
-                        )
-                except Exception as e:
-                    logger.exception(e)
-                break 
-    
-    else:
-        await auto_filter(client, message))"""
+
 
 
 @Client.on_callback_query(filters.regex(r"^next"))
@@ -139,6 +99,50 @@ async def next_page(bot, query):
       
       
 @Client.on_message(filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.text & filters.private & filters.incoming)
+
+async def give_filter(client, message):
+    group_id = message.chat.id
+    name = message.text
+    keywords = await get_filters(group_id)
+    for keyword in reversed(sorted(keywords, key=len)):
+        pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"
+        if re.search(pattern, name, flags=re.IGNORECASE):
+            reply_text, btn, alert, fileid = await find_filter(group_id, keyword)
+            if reply_text:
+                reply_text = reply_text.replace("\\n", "\n").replace("\\t", "\t")
+            if btn is not None:
+                try:
+                    if fileid == "None":
+                        if btn == "[]":
+                            await message.reply_text(reply_text, disable_web_page_preview=True)
+                        else:
+                            button = eval(btn)
+                            await message.reply_text(
+                                reply_text,
+                                disable_web_page_preview=True,
+                                reply_markup=InlineKeyboardMarkup(button)
+                            )
+                    elif btn == "[]":
+                        await message.reply_cached_media(
+                            fileid,
+                            caption=reply_text or ""
+                        )
+                    else:
+                        button = eval(btn) 
+                        await message.reply_cached_media(
+                            fileid,
+                            caption=reply_text or "",
+                            reply_markup=InlineKeyboardMarkup(button)
+                        )
+                except Exception as e:
+                    logger.exception(e)
+                break 
+    
+    else:
+        await auto_filter(client, message)
+
+
+
 async def filter(client, message):
     if message.text.startswith("/"):
         return
@@ -798,10 +802,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.answer("It Will Not Work for You, as It was Not Requested by You 😒",show_alert=True) 
 
 async def auto_filter(client, msg):
-    
     message = msg
     if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)",  message.text):
-        
         search = message.text
     return
 
