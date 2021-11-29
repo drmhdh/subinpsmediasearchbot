@@ -63,7 +63,8 @@ async def give_filter(client,message):
                     logger.exception(e)
                 break 
     
-        
+    else:
+        await auto_filter(client, message)      
 
 
 @Client.on_message(filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.text & filters.private & filters.incoming)
@@ -253,6 +254,18 @@ def split_list(l, n):
 
 
 @Client.on_callback_query()
+
+async def auto_filter(client, msg, spoll=False):
+    if not spoll:
+        message = msg
+        if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
+            return
+        if 2 < len(message.text) < 100:
+            search = message.text
+            files, offset, total_results = await get_search_results(search.lower(), offset=0, filter=True)
+            
+
+
 async def cb_handler(client: Client, query: CallbackQuery):
     if query.data == "close_data":
         await query.message.delete()
@@ -626,7 +639,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 
                 parse_mode='html'
             )
-                
+  
+
+
         elif query.data.startswith("subinps"):
             ident, file_id = query.data.split("#")
             filedetails = await get_file_details(file_id)
