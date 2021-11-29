@@ -328,7 +328,7 @@ def split_list(l, n):
 async def auto_filter(filters.text, client, msg, spoll=False):
     if not spoll:
         message = msg
-        if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
+        if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)",  message.reply_text):
             return
         if 2 < len(message.text) < 100:
             search = message.text
