@@ -62,8 +62,8 @@ async def give_filter(client,message):
                 except Exception as e:
                     logger.exception(e)
                 break 
-    else:
-        await auto_filter(client, message)   
+    
+        
 
 
 @Client.on_message(filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.text & filters.private & filters.incoming)
