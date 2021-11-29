@@ -25,13 +25,6 @@ BUTTONS = {}
 BOT = {}
 
 @Client.on_message(filters.group & filters.text & ~filters.edited & filters.incoming)
-
-
-   
-
-
-
-
 async def give_filter(client,message):
     group_id = message.chat.id
     name = message.text
@@ -332,7 +325,6 @@ def split_list(l, n):
 
 
 @Client.on_callback_query()
-
 async def auto_filter(client, msg, spoll=False):
     if not spoll:
         message = msg
