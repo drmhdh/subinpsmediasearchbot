@@ -106,8 +106,8 @@ async def give_filter(client,message):
         pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"
         if re.search(pattern, name, flags=re.IGNORECASE):
             reply_text, btn, alert, fileid = await find_filter(group_id, keyword)
-            if reply_text:
-                reply_text = reply_text.replace("\\n", "\n").replace("\\t", "\t")
+            
+                
             if btn is not None:
                 try:
                     if fileid == "None":
@@ -133,10 +133,7 @@ async def give_filter(client,message):
                                 caption=reply_text or "",
                                 reply_markup=InlineKeyboardMarkup(button)
                             )
-                except Exception as e:
-                    print(e)
-                    pass
-                break 
+                
 
       
 @Client.on_message(filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.text & filters.private & filters.incoming)
