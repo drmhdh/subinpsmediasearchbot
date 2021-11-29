@@ -129,7 +129,7 @@ async def get_all(bot, cmd):
         if grpid is not None:
             grp_id = grpid
             try:
-                chat = await client.get_chat(grpid)
+                chat = await bot.get_chat(grpid)
                 title = chat.title
             except:
                 await cmd.reply_text("Make sure I'm present in your group!!", quote=True)
