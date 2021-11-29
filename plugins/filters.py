@@ -17,7 +17,7 @@ from info import ADMINS
 async def addfilter(bot, cmd):
     userid = cmd.from_user.id if cmd.from_user else None
     if not userid:
-        return await cmd.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
+        return await cmd.reply(f"You are anonymous admin. Use /connect {cmd.chat.id} in PM")
     chat_type = cmd.chat.type
     args = cmd.text.html.split(None, 1)
 
