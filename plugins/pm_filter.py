@@ -140,8 +140,8 @@ async def give_filter(client,message):
 
 
                 
-    
-    
+
+
 
 
 async def filter(client, message):
