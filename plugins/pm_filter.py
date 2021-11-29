@@ -325,14 +325,6 @@ def split_list(l, n):
 
 
 @Client.on_callback_query()
-async def auto_filter(filters.text, client, msg, spoll=False):
-    if not spoll:
-        message = msg
-        if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)",  message.reply_text):
-            return
-        if 2 < len(message.text) < 100:
-            search = message.text
-            files, offset, total_results = await get_search_results(search.lower(), offset=0, filter=True)
 
 
 async def cb_handler(client: Client, query: CallbackQuery):
@@ -800,6 +792,18 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await query.message.delete()
             except:
                 await query.message.delete()
-                
+
+async def auto_filter( client, msg, spoll=False):
+    if not spoll:
+        message = msg
+        if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)",  message.text):
+            return
+        if 2 < len(message.text) < 100:
+            search = message.text
+            files, offset, total_results = await get_search_results(search.lower(), offset=0, filter=True)
+                  
+
+                  
+
     else:
         await query.answer("It Will Not Work for You, as It was Not Requested by You 😒",show_alert=True)
