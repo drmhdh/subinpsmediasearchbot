@@ -35,7 +35,7 @@ async def give_filter(client,message):
             reply_text, btn, alert, fileid = await find_filter(group_id, keyword)
             if reply_text:
                 reply_text = reply_text.replace("\\n", "\n").replace("\\t", "\t")
-            if btn is not None:
+            """if btn is not None:
                 try:
                     if fileid == "None":
                         if btn == "[]":
@@ -63,7 +63,7 @@ async def give_filter(client,message):
                     logger.exception(e)
                 break 
     
-    """else:
+    else:
         await auto_filter(client, message)"""      
 
 
