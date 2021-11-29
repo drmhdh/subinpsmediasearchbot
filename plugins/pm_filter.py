@@ -796,8 +796,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
 async def auto_filter( client, msg, spoll=False):
     if not spoll:
         message = msg
-        if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)",  message.text):
-            return
+        """if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)",  message.text):
+            return"""
         """if 2 < len(message.text) < 100:
             search = message.text
             files, offset, total_results = await get_search_results(search.lower(), offset=0, filter=True)"""
