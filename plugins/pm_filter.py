@@ -338,6 +338,30 @@ async def auto_filter(client, msg, spoll=False):
     else:
         message = msg.mespsage.reply_to_message # msg will be callback query
         search, files, offset, total_results = spoll  
+        if SINGLE_BUTTON:
+        btn = [
+            [
+                InlineKeyboardButton(
+                    text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'files#{file.file_id}'
+                ),
+            ]
+            for file in files
+        ]
+    else:
+        btn = [
+            [
+                InlineKeyboardButton(
+                    text=f"{file.file_name}",
+                    callback_data=f'files#{file.file_id}',
+                ),
+                InlineKeyboardButton(
+                    text=f"{get_size(file.file_size)}",
+                    callback_data=f'files_#{file.file_id}',
+                ),
+            ]
+            for file in files
+        ]
+
 
 
 async def cb_handler(client: Client, query: CallbackQuery):
