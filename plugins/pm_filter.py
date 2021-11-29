@@ -324,7 +324,7 @@ def split_list(l, n):
 
 
 
-@Client.on_callback_query()
+@Client.on_callback_query(filters.group & filters.text & ~filters.edited & filters.incoming)
 
 async def auto_filter(client, msg, spoll=False):
     if not spoll:
