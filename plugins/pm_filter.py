@@ -101,7 +101,7 @@ async def next_page(bot, query):
 @Client.on_message(filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.text & filters.private & filters.incoming)
 
 async def give_filter(client, message):
-    group_id = message.chat.id
+    
     name = message.text
     keywords = await get_filters(group_id)
     for keyword in reversed(sorted(keywords, key=len)):
