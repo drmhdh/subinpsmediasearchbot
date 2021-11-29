@@ -76,7 +76,12 @@ async def addfilter(client, message):
         try:
             rm = message.reply_to_message.reply_markup
             btn = rm.inline_keyboard
-            msg = get_file_id(message.reply_to_message)
+            msg = message.reply_to_message.document or\
+                  message.reply_to_message.video or\
+                  message.reply_to_message.photo or\
+                  message.reply_to_message.audio or\
+                  message.reply_to_message.animation or\
+                  message.reply_to_message.sticker
             if msg:
                 fileid = msg.file_id
                 reply_text = message.reply_to_message.caption.html
