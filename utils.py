@@ -8,7 +8,7 @@ from datetime import datetime
 from typing import Union
 from database.users_chats_db import db
 from pyrogram.errors import InputUserDeactivated, UserNotParticipant, FloodWait, UserIsBlocked, PeerIdInvalid
-from pyrogram.errors import UserNotParticipant
+
 from pyrogram.file_id import FileId
 from pymongo.errors import DuplicateKeyError
 from umongo import Instance, Document, fields
@@ -360,18 +360,6 @@ def unpack_new_file_id(new_file_id):
     )
     file_ref = encode_file_ref(decoded.file_reference)
     return file_id, file_ref
-
-
-
-    
-
-    
-    
-   
-    
-      
-        
- 
 
 
 def extract_user(cmd: Message) -> Union[int, str]:
