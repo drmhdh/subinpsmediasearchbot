@@ -1,5 +1,5 @@
 import io
-from pyrogram import filters, bot
+from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from database.filters_mdb import(
    add_filter,
