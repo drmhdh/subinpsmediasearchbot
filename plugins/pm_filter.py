@@ -690,9 +690,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
  
     
-    else:
-        message = msg.mespsage.reply_to_message # msg will be callback query
-        search, files, offset, total_results = spoll             
+   
             
         
         elif query.data == "hamid":
