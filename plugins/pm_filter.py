@@ -36,8 +36,8 @@ async def give_filter(client, message):
         pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"
         if re.search(pattern, name, flags=re.IGNORECASE):
             reply_text, btn, alert, fileid = await find_filter(group_id, keyword)
-            """if reply_text:
-                reply_text = reply_text.replace("\\n", "\n").replace("\\t", "\t")"""
+            if reply_text:
+                reply_text = reply_text.replace("\\n", "\n").replace("\\t", "\t")
             if btn is not None:
                 try:
                     if fileid == "None":
