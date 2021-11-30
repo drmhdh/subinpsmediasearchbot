@@ -78,16 +78,7 @@ async def give_filter(client, message):
 @Client.on_message(filters.group & filters.text & ~filters.edited & filters.incoming)  
 async def give_filter(client, message):
     
-    group_id = message.chat.id
-    name = message.text
     
-    keywords = await get_filters(group_id)
-    for keyword in reversed(sorted(keywords, key=len)):
-        pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"
-        if re.search(pattern, name, flags=re.IGNORECASE):
-            reply_text, btn, alert, fileid = await find_filter(group_id, keyword)
-            if reply_text:
-                reply_text = reply_text.replace("\\n", "\n").replace("\\t", "\t")
             
 
 @Client.on_callback_query(filters.regex(r"^next"))
