@@ -26,7 +26,7 @@ BOT = {}
 
 
 @Client.on_message(filters.group & filters.text & ~filters.edited & filters.incoming)  
-await auto_filter(client, message)
+    await auto_filter(client, message)
 async def give_filter(client, message):
     group_id = message.chat.id
     name = message.text
