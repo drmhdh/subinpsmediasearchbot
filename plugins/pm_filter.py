@@ -350,6 +350,191 @@ def split_list(l, n):
 
 @Client.on_callback_query()
 async def cb_handler(client: Client, query: CallbackQuery):
+   
+    clicked = query.from_user.id
+    try:
+        typed = query.message.reply_to_message.from_user.id
+    except:
+        typed = query.from_user.id
+        pass
+    if (clicked == typed):
+
+        if query.data.startswith("next"):
+            ident, index, keyword = query.data.split("_")
+            try:
+                data = BUTTONS[keyword]
+            except KeyError:
+                await query.answer("You are using this for one of my old message, please send the request again.",show_alert=True)
+                return
+
+            if int(index) == int(data["total"]) - 2:
+                buttons = data['buttons'][int(index)+1].copy()
+
+                buttons.append(
+                    [InlineKeyboardButton("⏪ BACK", callback_data=f"back_{int(index)+1}_{keyword}")]
+                )
+                buttons.append(
+                    [InlineKeyboardButton(f"📃 Pages {int(index)+2}/{data['total']}", callback_data="pages")]
+                )
+                if BUTTON:
+                    buttons.append([InlineKeyboardButton(text="Close ❌",callback_data="close")])
+
+                await query.edit_message_reply_markup( 
+                    reply_markup=InlineKeyboardMarkup(buttons)
+                )
+                return
+            else:
+                buttons = data['buttons'][int(index)+1].copy()
+
+                buttons.append(
+                    [InlineKeyboardButton("⏪ BACK", callback_data=f"back_{int(index)+1}_{keyword}"),InlineKeyboardButton("NEXT ⏩", callback_data=f"next_{int(index)+1}_{keyword}")]
+                )
+                buttons.append(
+                    [InlineKeyboardButton(f"📃 Pages {int(index)+2}/{data['total']}", callback_data="pages")]
+                )
+                if BUTTON:
+                    buttons.append([InlineKeyboardButton(text="Close ❌",callback_data="close")])
+
+                await query.edit_message_reply_markup( 
+                    reply_markup=InlineKeyboardMarkup(buttons)
+                )
+                return
+
+
+        elif query.data.startswith("back"):
+            ident, index, keyword = query.data.split("_")
+            try:
+                data = BUTTONS[keyword]
+            except KeyError:
+                await query.answer("You are using this for one of my old message, please send the request again.",show_alert=True)
+                return
+
+            if int(index) == 1:
+                buttons = data['buttons'][int(index)-1].copy()
+
+                buttons.append(
+                    [InlineKeyboardButton("NEXT ⏩", callback_data=f"next_{int(index)-1}_{keyword}")]
+                )
+                buttons.append(
+                    [InlineKeyboardButton(f"📃 Pages {int(index)}/{data['total']}", callback_data="pages")]
+                )
+                if BUTTON:
+                    buttons.append([InlineKeyboardButton(text="Close ❌",callback_data="close")])
+
+                await query.edit_message_reply_markup( 
+                    reply_markup=InlineKeyboardMarkup(buttons)
+                )
+                return   
+            else:
+                buttons = data['buttons'][int(index)-1].copy()
+
+                buttons.append(
+                    [InlineKeyboardButton("⏪ BACK", callback_data=f"back_{int(index)-1}_{keyword}"),InlineKeyboardButton("NEXT ⏩", callback_data=f"next_{int(index)-1}_{keyword}")]
+                )
+                buttons.append(
+                    [InlineKeyboardButton(f"📃 Pages {int(index)}/{data['total']}", callback_data="pages")]
+                )
+                if BUTTON:
+                    buttons.append([InlineKeyboardButton(text="Close ❌",callback_data="close")])
+
+                await query.edit_message_reply_markup( 
+                    reply_markup=InlineKeyboardMarkup(buttons)
+                )
+                return
+        elif query.data == "about":
+            buttons = [
+                [
+                    InlineKeyboardButton('𝗝𝗼𝗶𝗻 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎', url='https://t.me/dental_case_study')
+                ]
+                ,
+                [    
+                    InlineKeyboardButton('➕ Join 🦷 Discussion Group ➕', url='https://t.me/dent_tech_for_u')
+                ]
+                ,
+                [
+                    InlineKeyboardButton('🔮 Status', callback_data='stats')    
+                ]
+                ,
+                [                
+                    InlineKeyboardButton('🏠 Home', callback_data='hamid'),
+                    InlineKeyboardButton('🔐 Close', callback_data='close_data')
+                ]
+                ]
+            await query.message.edit(text="<b>Developer : <a href='https://t.me/dent_tech_for_books'>📚🅳🆃 📖 🆁🅾🅾🅼📚</a>\nLanguage : <code>Python3</code>\nLibrary : <a href='https://t.me/dent_tech_library'>🔬𝔻𝕖𝕟𝕥 𝕋𝕖𝕔𝕙 𝕃𝕚𝕓𝕣𝕒𝕣𝕪📚</a>\nDiscussion Group: <a href='https://t.me/dent_tech_for_u'>Click Here</a>\n𝗝𝗼𝗶𝗻 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎: <a href='https://t.me/dental_case_study'>Click Here</a></b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+
+        elif query.data == "stats":
+            buttons = [
+                [
+                InlineKeyboardButton('👩‍🦯 Back', callback_data='about'),
+                InlineKeyboardButton('♻️', callback_data='rfrsh')
+                ]
+                ]
+            reply_markup = InlineKeyboardMarkup(buttons)
+            total = await Media.count_documents()
+            users = await db.total_users_count()
+            chats = await db.total_chat_count()
+            monsize = await db.get_db_size()
+            free = 536870912 - monsize
+            monsize = get_size(monsize)
+            free = get_size(free)
+            await query.message.edit_text(
+                text=script.STATUS_TXT.format(total, users, chats, monsize, free),
+                reply_markup=reply_markup,
+                parse_mode='html' 
+                )
+                
+                
+        elif query.data == "rfrsh":
+            await query.answer("Fetching MongoDb DataBase")
+            buttons = [
+                [
+                InlineKeyboardButton('👩‍🦯 Back', callback_data='about'),
+                InlineKeyboardButton('♻️', callback_data='rfrsh')
+                ]
+                ]
+            reply_markup = InlineKeyboardMarkup(buttons)
+            total = await Media.count_documents()
+            users = await db.total_users_count()
+            chats = await db.total_chat_count()
+            monsize = await db.get_db_size()
+            free = 536870912 - monsize
+            monsize = get_size(monsize)
+            free = get_size(free)
+            await query.message.edit_text(
+                text=script.STATUS_TXT.format(total, users, chats, monsize, free),
+                reply_markup=reply_markup,
+                parse_mode='html'
+                )
+
+ 
+    
+   
+            
+        
+        elif query.data == "hamid":
+            buttons = [[
+                InlineKeyboardButton("🔎 Search", switch_inline_query_current_chat='')
+                ],[
+                InlineKeyboardButton("🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎", url="https://t.me/dental_case_study")
+                ],[
+                InlineKeyboardButton("🚀 Control Panel 🏰", callback_data="about")
+                ],[
+                InlineKeyboardButton("➕Join 🦷Discussion Group➕", url="https://t.me/dent_tech_for_u")
+                ],[            
+                InlineKeyboardButton("🎁 Donate & Support 🎁", url="https://t.me/dental_backup/180")
+            ]]   
+            reply_markup = InlineKeyboardMarkup(buttons)
+            await query.message.edit_text(
+                text=script.START_MSG.format(query.from_user.mention, temp.U_NAME, temp.B_NAME),
+                reply_markup=reply_markup,
+                
+                parse_mode='html'
+            )
+  
+
+
+
+            
     if query.data == "close_data":
         await query.message.delete()
                                            
@@ -571,190 +756,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
    
    
 
-    clicked = query.from_user.id
-    try:
-        typed = query.message.reply_to_message.from_user.id
-    except:
-        typed = query.from_user.id
-        pass
-    if (clicked == typed):
-
-        if query.data.startswith("next"):
-            ident, index, keyword = query.data.split("_")
-            try:
-                data = BUTTONS[keyword]
-            except KeyError:
-                await query.answer("You are using this for one of my old message, please send the request again.",show_alert=True)
-                return
-
-            if int(index) == int(data["total"]) - 2:
-                buttons = data['buttons'][int(index)+1].copy()
-
-                buttons.append(
-                    [InlineKeyboardButton("⏪ BACK", callback_data=f"back_{int(index)+1}_{keyword}")]
-                )
-                buttons.append(
-                    [InlineKeyboardButton(f"📃 Pages {int(index)+2}/{data['total']}", callback_data="pages")]
-                )
-                if BUTTON:
-                    buttons.append([InlineKeyboardButton(text="Close ❌",callback_data="close")])
-
-                await query.edit_message_reply_markup( 
-                    reply_markup=InlineKeyboardMarkup(buttons)
-                )
-                return
-            else:
-                buttons = data['buttons'][int(index)+1].copy()
-
-                buttons.append(
-                    [InlineKeyboardButton("⏪ BACK", callback_data=f"back_{int(index)+1}_{keyword}"),InlineKeyboardButton("NEXT ⏩", callback_data=f"next_{int(index)+1}_{keyword}")]
-                )
-                buttons.append(
-                    [InlineKeyboardButton(f"📃 Pages {int(index)+2}/{data['total']}", callback_data="pages")]
-                )
-                if BUTTON:
-                    buttons.append([InlineKeyboardButton(text="Close ❌",callback_data="close")])
-
-                await query.edit_message_reply_markup( 
-                    reply_markup=InlineKeyboardMarkup(buttons)
-                )
-                return
-
-
-        elif query.data.startswith("back"):
-            ident, index, keyword = query.data.split("_")
-            try:
-                data = BUTTONS[keyword]
-            except KeyError:
-                await query.answer("You are using this for one of my old message, please send the request again.",show_alert=True)
-                return
-
-            if int(index) == 1:
-                buttons = data['buttons'][int(index)-1].copy()
-
-                buttons.append(
-                    [InlineKeyboardButton("NEXT ⏩", callback_data=f"next_{int(index)-1}_{keyword}")]
-                )
-                buttons.append(
-                    [InlineKeyboardButton(f"📃 Pages {int(index)}/{data['total']}", callback_data="pages")]
-                )
-                if BUTTON:
-                    buttons.append([InlineKeyboardButton(text="Close ❌",callback_data="close")])
-
-                await query.edit_message_reply_markup( 
-                    reply_markup=InlineKeyboardMarkup(buttons)
-                )
-                return   
-            else:
-                buttons = data['buttons'][int(index)-1].copy()
-
-                buttons.append(
-                    [InlineKeyboardButton("⏪ BACK", callback_data=f"back_{int(index)-1}_{keyword}"),InlineKeyboardButton("NEXT ⏩", callback_data=f"next_{int(index)-1}_{keyword}")]
-                )
-                buttons.append(
-                    [InlineKeyboardButton(f"📃 Pages {int(index)}/{data['total']}", callback_data="pages")]
-                )
-                if BUTTON:
-                    buttons.append([InlineKeyboardButton(text="Close ❌",callback_data="close")])
-
-                await query.edit_message_reply_markup( 
-                    reply_markup=InlineKeyboardMarkup(buttons)
-                )
-                return
-        elif query.data == "about":
-            buttons = [
-                [
-                    InlineKeyboardButton('𝗝𝗼𝗶𝗻 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎', url='https://t.me/dental_case_study')
-                ]
-                ,
-                [    
-                    InlineKeyboardButton('➕ Join 🦷 Discussion Group ➕', url='https://t.me/dent_tech_for_u')
-                ]
-                ,
-                [
-                    InlineKeyboardButton('🔮 Status', callback_data='stats')    
-                ]
-                ,
-                [                
-                    InlineKeyboardButton('🏠 Home', callback_data='hamid'),
-                    InlineKeyboardButton('🔐 Close', callback_data='close_data')
-                ]
-                ]
-            await query.message.edit(text="<b>Developer : <a href='https://t.me/dent_tech_for_books'>📚🅳🆃 📖 🆁🅾🅾🅼📚</a>\nLanguage : <code>Python3</code>\nLibrary : <a href='https://t.me/dent_tech_library'>🔬𝔻𝕖𝕟𝕥 𝕋𝕖𝕔𝕙 𝕃𝕚𝕓𝕣𝕒𝕣𝕪📚</a>\nDiscussion Group: <a href='https://t.me/dent_tech_for_u'>Click Here</a>\n𝗝𝗼𝗶𝗻 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎: <a href='https://t.me/dental_case_study'>Click Here</a></b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
-
-        elif query.data == "stats":
-            buttons = [
-                [
-                InlineKeyboardButton('👩‍🦯 Back', callback_data='about'),
-                InlineKeyboardButton('♻️', callback_data='rfrsh')
-                ]
-                ]
-            reply_markup = InlineKeyboardMarkup(buttons)
-            total = await Media.count_documents()
-            users = await db.total_users_count()
-            chats = await db.total_chat_count()
-            monsize = await db.get_db_size()
-            free = 536870912 - monsize
-            monsize = get_size(monsize)
-            free = get_size(free)
-            await query.message.edit_text(
-                text=script.STATUS_TXT.format(total, users, chats, monsize, free),
-                reply_markup=reply_markup,
-                parse_mode='html' 
-                )
-                
-                
-        elif query.data == "rfrsh":
-            await query.answer("Fetching MongoDb DataBase")
-            buttons = [
-                [
-                InlineKeyboardButton('👩‍🦯 Back', callback_data='about'),
-                InlineKeyboardButton('♻️', callback_data='rfrsh')
-                ]
-                ]
-            reply_markup = InlineKeyboardMarkup(buttons)
-            total = await Media.count_documents()
-            users = await db.total_users_count()
-            chats = await db.total_chat_count()
-            monsize = await db.get_db_size()
-            free = 536870912 - monsize
-            monsize = get_size(monsize)
-            free = get_size(free)
-            await query.message.edit_text(
-                text=script.STATUS_TXT.format(total, users, chats, monsize, free),
-                reply_markup=reply_markup,
-                parse_mode='html'
-                )
-
- 
-    
    
-            
-        
-        elif query.data == "hamid":
-            buttons = [[
-                InlineKeyboardButton("🔎 Search", switch_inline_query_current_chat='')
-                ],[
-                InlineKeyboardButton("🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎", url="https://t.me/dental_case_study")
-                ],[
-                InlineKeyboardButton("🚀 Control Panel 🏰", callback_data="about")
-                ],[
-                InlineKeyboardButton("➕Join 🦷Discussion Group➕", url="https://t.me/dent_tech_for_u")
-                ],[            
-                InlineKeyboardButton("🎁 Donate & Support 🎁", url="https://t.me/dental_backup/180")
-            ]]   
-            reply_markup = InlineKeyboardMarkup(buttons)
-            await query.message.edit_text(
-                text=script.START_MSG.format(query.from_user.mention, temp.U_NAME, temp.B_NAME),
-                reply_markup=reply_markup,
-                
-                parse_mode='html'
-            )
-  
-
-
-
-            
+   
+   
+   
         elif query.data.startswith("subinps"):
             ident, file_id = query.data.split("#")
             filedetails = await get_file_details(file_id)
