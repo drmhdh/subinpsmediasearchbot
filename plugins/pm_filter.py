@@ -568,6 +568,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 return
 
     
+   
+   
+@Client.on_callback_query()
+async def cb_handler(client: Client, query: CallbackQuery):  
     clicked = query.from_user.id
     try:
         typed = query.message.reply_to_message.from_user.id
