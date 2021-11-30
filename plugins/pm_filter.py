@@ -28,7 +28,7 @@ BOT = {}
 @Client.on_message(filters.group & filters.text & ~filters.edited & filters.incoming)  
     
 async def give_filter(client, message):
-    await auto_filter(client, message)
+    
     group_id = message.chat.id
     name = message.text
     keywords = await get_filters(group_id)
@@ -66,7 +66,8 @@ async def give_filter(client, message):
                     logger.exception(e)
                 break 
     
-    
+    else:
+        await auto_filter(client, message)   
                             
                                 
         
