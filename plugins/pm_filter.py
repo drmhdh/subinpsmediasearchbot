@@ -65,8 +65,8 @@ async def give_filter(client, message):
                 except Exception as e:
                     logger.exception(e)
                 break 
-          else:
-              return
+            else:
+                return
       elif:
                    
             await auto_filter(client, message)
