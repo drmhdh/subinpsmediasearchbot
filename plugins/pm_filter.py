@@ -565,13 +565,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
         try:
             if AUTH_CHANNEL and not await is_subscribed(client, query):
                 await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
-                return
+              
 
     
    
    
-@Client.on_callback_query()
-async def cb_handler(client: Client, query: CallbackQuery):  
+
     clicked = query.from_user.id
     try:
         typed = query.message.reply_to_message.from_user.id
