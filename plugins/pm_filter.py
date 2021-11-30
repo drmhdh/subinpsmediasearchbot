@@ -818,7 +818,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 async def auto_filter(client, msg):
     message = msg
     if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)",  message.text):
-        
+        return  
     else:
         message = msg.message.reply_to_message
                   
