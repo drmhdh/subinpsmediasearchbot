@@ -29,9 +29,10 @@ BOT = {}
 
 @Client.on_message(filters.group & filters.text & ~filters.edited & filters.incoming)  
 async def give_filter(client, message):
-    return await auto_filter
+    
     group_id = message.chat.id
     name = message.text
+    await auto_filter(client, message)
     keywords = await get_filters(group_id)
     for keyword in reversed(sorted(keywords, key=len)):
         pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"
