@@ -75,10 +75,8 @@ async def give_filter(client, message):
 
 
 
-@Client.on_message(filters.group & filters.text & ~filters.edited & filters.incoming)  
-async def give_filter(client, message):
-    
-    return  
+
+  
             
 
 @Client.on_callback_query(filters.regex(r"^next"))
