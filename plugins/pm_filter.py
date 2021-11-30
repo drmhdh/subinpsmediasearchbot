@@ -68,7 +68,7 @@ async def give_filter(client, message):
             
 
                    
-try:
+else:
     await auto_filter(client, message)
 
 @Client.on_callback_query(filters.regex(r"^next"))
