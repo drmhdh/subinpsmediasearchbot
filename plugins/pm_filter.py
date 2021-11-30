@@ -65,8 +65,8 @@ async def give_filter(client, message):
                 except Exception as e:
                     logger.exception(e)
                 break 
-    
-    
+elif:
+                   
     await auto_filter(client, message)
 
 @Client.on_callback_query(filters.regex(r"^next"))
