@@ -65,15 +65,10 @@ async def give_filter(client, message):
                 except Exception as e:
                     logger.exception(e)
                 break 
-            else:
-                return
-        else:
-            return
-    else:
-        return
-elif:
+            
+
                    
-    await auto_filter(client, message)
+elif await auto_filter(client, message)
 
 @Client.on_callback_query(filters.regex(r"^next"))
 async def next_page(bot, query):
