@@ -753,28 +753,28 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 except Exception as e:
                     print(e)
                     f_caption=f_caption
-            if f_caption is None:
-                f_caption = f"{title}"
-            buttons = [
-                [
-                InlineKeyboardButton('🔎 Search', switch_inline_query_current_chat='')
-                ]
-                ,
-                [
-                InlineKeyboardButton('📚🅳🆃 📖 🆁🅾🅾🅼📚', url='https://t.me/dent_tech_for_books')
-                ]
-                ,
-                [
-                InlineKeyboardButton('𝗝𝗼𝗶𝗻 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎', url='https://t.me/dental_case_study')
-                ]
-                ]
-            await query.answer()
-            await client.send_cached_media(
-                chat_id=query.from_user.id,
-                file_id=file_id,
-                caption=f_caption,
-                reply_markup=InlineKeyboardMarkup(buttons)
-                )
+         if f_caption is None:
+             f_caption = f"{title}"
+         buttons = [
+             [
+             InlineKeyboardButton('🔎 Search', switch_inline_query_current_chat='')
+             ]
+             ,
+             [
+             InlineKeyboardButton('📚🅳🆃 📖 🆁🅾🅾🅼📚', url='https://t.me/dent_tech_for_books')
+             ]
+             ,
+             [
+             InlineKeyboardButton('𝗝𝗼𝗶𝗻 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎', url='https://t.me/dental_case_study')
+             ]
+             ]
+         await query.answer()
+         await client.send_cached_media(
+             chat_id=query.from_user.id,
+             file_id=file_id,
+             caption=f_caption,
+             reply_markup=InlineKeyboardMarkup(buttons)
+             )
 
     
    
