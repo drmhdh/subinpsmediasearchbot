@@ -755,7 +755,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
              f_caption=f_caption
                     
         if f_caption is None:
-                f_caption = f"{files.file_name}"
+            f_caption = f"{files.file_name}"
             buttons = [
                 [
                 InlineKeyboardButton('🔎 Search', switch_inline_query_current_chat='')   
