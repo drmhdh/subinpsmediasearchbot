@@ -755,32 +755,29 @@ async def cb_handler(client: Client, query: CallbackQuery):
              f_caption=f_caption
                     
         if f_caption is None:
-            f_caption = f"{title}"
-            try:
-                if AUTH_CHANNEL and not await is_subscribed(client, query):
-                    await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
-                    await client.send_cached_media(
-                        chat_id=query.from_user.id,
-                        file_id=file_id,
-                        caption=f_caption,
-                        reply_markup=InlineKeyboardMarkup(buttons)
-                        
-                        buttons = [
-                            [
-                            InlineKeyboardButton('🔎 Search', switch_inline_query_current_chat='')
-                            ]
-                            ,
-                            [
-                            InlineKeyboardButton('📚🅳🆃 📖 🆁🅾🅾🅼📚', url='https://t.me/dent_tech_for_books')
-                            ]
-                            ,
-                            [
-                            InlineKeyboardButton('𝗝𝗼𝗶𝗻 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎', url='https://t.me/dental_case_study')
-                            ]
-        
-                            ]
-    
-                    )
+                f_caption = f"{files.file_name}"
+            buttons = [
+                [
+                InlineKeyboardButton('🔎 Search', switch_inline_query_current_chat='')   
+                ]
+                ,
+                [
+                InlineKeyboardButton('📚🅳🆃 📖 🆁🅾🅾🅼📚', url='https://t.me/dent_tech_for_books')
+                ]
+                ,
+                [
+                InlineKeyboardButton('𝗝𝗼𝗶𝗻 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎', url='https://t.me/dental_case_study')
+                ]
+                ]
+                
+            await query.answer()
+            await client.send_cached_media(
+                chat_id=query.from_user.id,
+                file_id=file_id,
+                caption=f_caption,
+                reply_markup=InlineKeyboardMarkup(buttons)
+                )
+            
     
    
    
