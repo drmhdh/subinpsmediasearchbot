@@ -768,13 +768,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('𝗝𝗼𝗶𝗻 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎', url='https://t.me/dental_case_study')
             ]
             ]
-         await query.answer()
-         await client.send_cached_media(
-             chat_id=query.from_user.id,
-             file_id=file_id,
-             caption=f_caption,
-             reply_markup=InlineKeyboardMarkup(buttons)
-             )
+        await query.answer()
+        await client.send_cached_media(
+            chat_id=query.from_user.id,
+            file_id=file_id,
+            caption=f_caption,
+            reply_markup=InlineKeyboardMarkup(buttons)
+            )
 
     
    
