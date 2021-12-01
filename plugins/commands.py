@@ -344,7 +344,7 @@ async def ping(bot, cmd):
     if usr_cmdall1.startswith("/ping"):
         await cmd.reply_text(
             
-            text=(f"</b>Helo, {cmd.from_user.mention} \n🏓Pong, Iam Alive...👻</b>"),
+            text=(f"</b>🏓Ping..!! \n🏓Pong.,!! Iam Alive...👻</b>"),
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
