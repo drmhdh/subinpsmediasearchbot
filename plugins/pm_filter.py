@@ -791,16 +791,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
             
 
 
-    elif query.data == "pages":
-        await query.answer()
-    elif query.data == "close":
-        try:
-            await query.message.reply_to_message.delete()
-            await query.message.delete()
-        except:
-            await query.message.delete()
-    else:
-        await query.answer("It Will Not Work for You, as It was Not Requested by You 😒",show_alert=True) 
 
 async def auto_filter(client, msg, spoll=False):
     if not spoll:
