@@ -557,7 +557,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     f_caption = f"{files.file_name}"
                 buttons = [
                     [
-                        InlineKeyboardButton('🔎 Search', switch_inlinquery.data.startswith("subinps"):
+                        InlineKeyboardButton('🔎 Search', switch_inline_query_current_chat='')
         
                     ]
                     ,
@@ -567,7 +567,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 
                     ,
                     [
-                InlineKeyboardButton('𝗝𝗼𝗶𝗻 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎', url='https://t.me/dental_case_study')
+                        InlineKeyboardButton('𝗝𝗼𝗶𝗻 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎', url='https://t.me/dental_case_study')
                     ]
             
             
