@@ -336,3 +336,22 @@ async def search(bot, cmd):
                 ]
             )
         )
+
+        
+@Client.on_message(filters.command('ping'))
+async def ping(bot, cmd):
+    usr_cmdall1 = cmd.text
+    if usr_cmdall1.startswith("/ping"):
+        await cmd.reply_text(
+            
+            text=(f"</b>Helo, {cmd.from_user.mention} \n🏓Pong, Iam Alive...👻</b>"),
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("🔎 Search", switch_inline_query_current_chat='')
+                    ]
+                ]
+            )
+        )
+
+        
