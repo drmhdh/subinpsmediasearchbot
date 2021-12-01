@@ -755,6 +755,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     f_caption=f_caption
         if f_caption is None:
             f_caption = f"{title}"
+            try:
+                if AUTH_CHANNEL and not await is_subscribed(client, query):
+                    await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
+                
         buttons = [
             [
             InlineKeyboardButton('🔎 Search', switch_inline_query_current_chat='')
@@ -767,7 +771,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
             [
             InlineKeyboardButton('𝗝𝗼𝗶𝗻 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎', url='https://t.me/dental_case_study')
             ]
-            ]
+        
+        ]
+    else:
         await query.answer()
         await client.send_cached_media(
             chat_id=query.from_user.id,
@@ -775,7 +781,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
             caption=f_caption,
             reply_markup=InlineKeyboardMarkup(buttons)
             )
-
+        try:
+            if AUTH_CHANNEL and not await is_subscribed(client, query):
+                await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
     
    
    
