@@ -67,9 +67,9 @@ async def give_filter(client, message):
                 break 
         
     else:
-        if AUTH_CHANNEL and not await is_subscribed(client, message):
         
-            await message.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
+        
+        await message.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")(client, message)
         
 
 @Client.on_message(filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.text & filters.private & filters.incoming)
