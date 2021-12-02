@@ -24,8 +24,8 @@ from database.filters_mdb import(
 BUTTONS = {}
 BOT = {}
 
-@Client.on_message(filters.text)
-"""async def give_filter(client, message):
+"""@Client.on_message(filters.text)
+async def give_filter(client, message):
     group_id = message.chat.id
     name = message.text
     keywords = await get_filters(group_id)
