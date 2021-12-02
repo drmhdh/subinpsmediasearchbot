@@ -67,7 +67,7 @@ async def give_filter(client, message):
                 break 
         
     else:
-        await auto_filter(client, message)
+        await auto_filter(client, message, query)
 
         
         
