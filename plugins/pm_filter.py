@@ -22,10 +22,8 @@ from database.filters_mdb import(
    get_filters,
 )
 
-
 BUTTONS = {}
 BOT = {}
-
 
 @Client.on_message(filters.group & filters.text & ~filters.edited & filters.incoming)  
 async def give_filter(client, message):
@@ -67,25 +65,9 @@ async def give_filter(client, message):
                 except Exception as e:
                     logger.exception(e)
                 break 
-            
-
-                   
+        
     else:
         await filter(client, message)
-
-
-
-
-  
-            
-
-
-
-   
-      
-
-
-
 
 @Client.on_message(filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.text & filters.private & filters.incoming)
 async def filter(client, message):
@@ -159,17 +141,16 @@ async def filter(client, message):
             )
             if BUTTON:
                 buttons.append([InlineKeyboardButton(text="Close ❌",callback_data="close")])
-            poster=None
+             poster=None
             if API_KEY:
                 poster=await get_poster(search)
             if poster:
                 await message.reply_photo(photo=poster, caption=f"<b>{message.from_user.mention}, ☕️ 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗪𝗵𝗮𝘁 𝗜 𝗙𝗼𝘂𝗻𝗱 𝗳𝗼𝗿 𝗬𝗼𝘂𝗿 𝗤𝘂𝗲𝗿𝘆 ❝{search}❞ ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
+
             else:
                 await message.reply_text(f"<b>{message.from_user.mention}, ☕️ 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗪𝗵𝗮𝘁 𝗜 𝗙𝗼𝘂𝗻𝗱 𝗳𝗼𝗿 𝗬𝗼𝘂𝗿 𝗤𝘂𝗲𝗿𝘆 ❝{search}❞ ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
             return
-
-            
-
+           
         data = BUTTONS[keyword]
         buttons = data['buttons'][0].copy()
 
@@ -185,13 +166,9 @@ async def filter(client, message):
         if API_KEY:
             poster=await get_poster(search)
         if poster:
-            await message.reply_photo(photo=poster, caption=f"<b>{message.from_user.mention}, ☕️ 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗪𝗵𝗮𝘁 𝗜 𝗙𝗼𝘂𝗻𝗱 𝗳𝗼𝗿 𝗬𝗼𝘂𝗿 𝗤𝘂𝗲𝗿𝘆 ❝{search}❞ ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
-            
-                
-        
-         
+           await message.reply_photo(photo=poster, caption=f"<b>{message.from_user.mention}, ☕️ 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗪𝗵𝗮𝘁 𝗜 𝗙𝗼𝘂𝗻𝗱 𝗳𝗼𝗿 𝗬𝗼𝘂𝗿 𝗤𝘂𝗲𝗿𝘆 ❝{search}❞ ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
         else:
-            await message.reply_text(f"<b>{message.from_user.mention}, ☕️ 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗪𝗵𝗮𝘁 𝗜 𝗙𝗼𝘂𝗻𝗱 𝗳𝗼𝗿 𝗬𝗼𝘂𝗿 𝗤𝘂𝗲𝗿𝘆 ❝{search}❞ ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
+           await message.reply_text(f"<b>{message.from_user.mention}, ☕️ 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗪𝗵𝗮𝘁 𝗜 𝗙𝗼𝘂𝗻𝗱 𝗳𝗼𝗿 𝗬𝗼𝘂𝗿 𝗤𝘂𝗲𝗿𝘆 ❝{search}❞ ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
 
 @Client.on_callback_query(filters.regex(r"^spolling"))
 async def advantage_spoll_choker(bot, query):
@@ -253,7 +230,12 @@ async def group(client, message):
             )
             if BUTTON:
                 buttons.append([InlineKeyboardButton(text="Close ❌",callback_data="close")])
-            
+            poster=None
+            if API_KEY:
+                poster=await get_poster(search)
+            if poster:
+                await message.reply_photo(photo=poster, caption=f"<b>{message.from_user.mention}, ☕️ 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗪𝗵𝗮𝘁 𝗜 𝗙𝗼𝘂𝗻𝗱 𝗳𝗼𝗿 𝗬𝗼𝘂𝗿 𝗤𝘂𝗲𝗿𝘆 ❝{search}❞ ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
+            else:
                 await message.reply_text(f"<b>{message.from_user.mention}, ☕️ 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗪𝗵𝗮𝘁 𝗜 𝗙𝗼𝘂𝗻𝗱 𝗳𝗼𝗿 𝗬𝗼𝘂𝗿 𝗤𝘂𝗲𝗿𝘆 ❝{search}❞ ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
             return
 
@@ -502,9 +484,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     [
                         InlineKeyboardButton('𝗝𝗼𝗶𝗻 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎', url='https://t.me/dental_case_study')
                     ]
-            
-            
-            
                 ]
             await query.answer()
             await client.send_cached_media(
@@ -513,7 +492,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 caption=f_caption,
                 reply_markup=InlineKeyboardMarkup(buttons)
                 )              
-                                     
     
         elif query.data.startswith("checksub"):
             if AUTH_CHANNEL and not await is_subscribed(client, query):
@@ -555,8 +533,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 caption=f_caption,
                 reply_markup=InlineKeyboardMarkup(buttons)
                 )
-      
-      
+            
         elif query.data == "pages":
             await query.answer()
         elif query.data == "close":
@@ -567,8 +544,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await query.message.delete()
     else:
         await query.answer("It Will Not Work for You, as It was Not Requested by You 😒",show_alert=True) 
-                                  
-                                             
+                                                                              
     if query.data == "close_data":
         await query.message.delete()
                                            
@@ -754,33 +730,4 @@ async def cb_handler(client: Client, query: CallbackQuery):
             )     
 
 
-                
-                
-            
-
-
-        
-   
-   
-   
-   
     
-            
-                            
-                
-                
-                
-            
-     
-            
-                
-                
-            
-
-
-
-
-
-
-           
-      
