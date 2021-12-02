@@ -67,11 +67,11 @@ async def give_filter(client, message):
                 break 
         
     else:
-        await client.send_cached_media(
-            chat_id=query.from_user.id,
-            file_id=file_id,
-            caption=f_caption
-        )
+            await client.send_cached_media(
+                chat_id=query.from_user.id,
+                file_id=file_id,
+                caption=f_caption
+                )
             await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
     except UserIsBlocked:
         await query.answer('Unblock the bot mahn !',show_alert = True)
