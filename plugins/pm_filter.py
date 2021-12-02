@@ -65,8 +65,13 @@ async def give_filter(client,message):
                 break 
 
     else:
-        await subinps(client, message)
-       
+        
+        for file in files:
+                file_id = file.file_id
+                filename = f"[{get_size(file.file_size)}] {file.file_name}"
+                btn.append(
+                    [InlineKeyboardButton(text=f"{filename}",callback_data=f"subinps#{file_id}")]
+                    )
                 
 
                   
