@@ -73,12 +73,12 @@ async def give_filter(client, message):
             caption=f_caption
             )
         await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
-        except UserIsBlocked:
-            await query.answer('Unblock the bot mahn !',show_alert = True)
-        except PeerIdInvalid:
-            await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
-        except Exception as e:
-            await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
+            except UserIsBlocked:
+                await query.answer('Unblock the bot mahn !',show_alert = True)
+            except PeerIdInvalid:
+                await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
+            except Exception as e:
+                await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
 
 
 @Client.on_message(filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.text & filters.private & filters.incoming)
