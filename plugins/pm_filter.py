@@ -67,15 +67,24 @@ async def give_filter(client, message):
                 break 
         
     else:
-        await filter(client, message)
-        files = await get_filter_results(query=search)
-        if files:
-            for file in files:
-                file_id = file.file_id
-                filename = f"[{get_size(file.file_size)}] {file.file_name}"
-                btn.append(
-                    [InlineKeyboardButton(text=f"{filename}", url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}")]
-                )
+        if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
+            return
+        if 2 < len(message.text) < 50:    
+            btn = []
+            search = message.text
+            nyva=BOT.get("username")
+            if not nyva:
+                botusername=await client.get_me()
+                nyva=botusername.username
+                BOT["username"]=nyva
+            files = await get_filter_results(query=search)
+            if files:
+                for file in files:
+                    file_id = file.file_id
+                    filename = f"[{get_size(file.file_size)}] {file.file_name}"
+                    btn.append(
+                        [InlineKeyboardButton(text=f"{filename}", url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}")]
+                    )
 
 
 @Client.on_message(filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.text & filters.private & filters.incoming)
