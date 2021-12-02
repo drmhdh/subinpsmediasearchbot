@@ -141,7 +141,7 @@ async def filter(client, message):
             )
             if BUTTON:
                 buttons.append([InlineKeyboardButton(text="Close ❌",callback_data="close")])
-             poster=None
+            poster=None
             if API_KEY:
                 poster=await get_poster(search)
             if poster:
