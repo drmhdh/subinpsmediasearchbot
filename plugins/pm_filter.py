@@ -65,7 +65,7 @@ async def give_filter(client,message):
                 break 
 
     else:
-        await filter(client, message)   
+        await group(client, message)   
 
 
                   
