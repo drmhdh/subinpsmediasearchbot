@@ -175,8 +175,15 @@ async def filter(client, message):
             [InlineKeyboardButton(text=f"📃 Pages 1/{data['total']}",callback_data="pages")]
         )
         if BUTTON:
-            buttons.append([InlineKeyboardButton(text="Close ❌",callback_data="close")])
-        else:
+           
+                poster=None
+            if API_KEY:
+                poster=await get_poster(search)
+            if poster:
+                await message.reply_photo(photo=poster, caption=f"<b>{message.from_user.mention}, ☕️ 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗪𝗵𝗮𝘁 𝗜 𝗙𝗼𝘂𝗻𝗱 𝗳𝗼𝗿 𝗬𝗼𝘂𝗿 𝗤𝘂𝗲𝗿𝘆 ❝{search}❞ ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
+  buttons.append([InlineKeyboardButton(text="Close ❌",callback_data="close")])
+         
+      else:
             await message.reply_text(f"<b>{message.from_user.mention}, ☕️ 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗪𝗵𝗮𝘁 𝗜 𝗙𝗼𝘂𝗻𝗱 𝗳𝗼𝗿 𝗬𝗼𝘂𝗿 𝗤𝘂𝗲𝗿𝘆 ❝{search}❞ ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
         
 
