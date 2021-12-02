@@ -19,12 +19,52 @@ from database.filters_mdb import(
    find_filter,
    get_filters,
 )
-
-
 BUTTONS = {}
 BOT = {}
 
-
+@Client.on_message(filters.group & filters.text & ~filters.edited & filters.incoming)  
+async def give_filter(client, message):
+    
+    group_id = message.chat.id
+    name = message.text
+    
+    keywords = await get_filters(group_id)
+    for keyword in reversed(sorted(keywords, key=len)):
+        pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"
+        if re.search(pattern, name, flags=re.IGNORECASE):
+            reply_text, btn, alert, fileid = await find_filter(group_id, keyword)
+            if reply_text:
+                reply_text = reply_text.replace("\\n", "\n").replace("\\t", "\t")
+            if btn is not None:
+                try:
+                    if fileid == "None":
+                        if btn == "[]":
+                            await message.reply_text(reply_text, disable_web_page_preview=True)
+                        else:
+                            button = eval(btn)
+                            await message.reply_text(
+                                reply_text,
+                                disable_web_page_preview=True,
+                                reply_markup=InlineKeyboardMarkup(button)
+                            )
+                    elif btn == "[]":
+                        await message.reply_cached_media(
+                            fileid,
+                            caption=reply_text or ""
+                        )
+                    else:
+                        button = eval(btn) 
+                        await message.reply_cached_media(
+                            fileid,
+                            caption=reply_text or "",
+                            reply_markup=InlineKeyboardMarkup(button)
+                        )
+                except Exception as e:
+                    logger.exception(e)
+                break 
+        
+    else:
+        await filter(client, message)
 
 @Client.on_callback_query(filters.regex(r"^next"))
 async def next_page(bot, query):
@@ -94,9 +134,7 @@ async def next_page(bot, query):
     except MessageNotModified:
         pass
     await query.answer()
-      
-      
-      
+                  
 @Client.on_message(filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.text & filters.private & filters.incoming)
 async def filter(client, message):
     if message.text.startswith("/"):
@@ -264,7 +302,6 @@ async def group(client, message):
             await message.reply_photo(photo=poster, caption=f"<b>{message.from_user.mention}, ☕️ 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗪𝗵𝗮𝘁 𝗜 𝗙𝗼𝘂𝗻𝗱 𝗳𝗼𝗿 𝗬𝗼𝘂𝗿 𝗤𝘂𝗲𝗿𝘆 ❝{search}❞ ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
         else:
             await message.reply_text(f"<b>{message.from_user.mention}, ☕️ 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗪𝗵𝗮𝘁 𝗜 𝗙𝗼𝘂𝗻𝗱 𝗳𝗼𝗿 𝗬𝗼𝘂𝗿 𝗤𝘂𝗲𝗿𝘆 ❝{search}❞ ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
-
     
 def get_size(size):
     """Get size in readable format"""
@@ -281,11 +318,7 @@ def split_list(l, n):
     for i in range(0, len(l), n):
         yield l[i:i + n]          
 
-
-
 @Client.on_callback_query()
-
-
 async def cb_handler(client: Client, query: CallbackQuery):
     if query.data == "close_data":
         await query.message.delete()
@@ -469,8 +502,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.edit_text(
                 "Your connected group details ;\n\n",
                 reply_markup=InlineKeyboardMarkup(buttons)
-            )     
-     
+            )        
      
     if query.data.startswith("file"):
         ident, file_id = query.data.split("#")
@@ -481,7 +513,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
         title = files.file_name
         size=get_size(files.file_size)
         f_caption=files.caption
-
 
     
     clicked = query.from_user.id
@@ -637,12 +668,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 text=script.STATUS_TXT.format(total, users, chats, monsize, free),
                 reply_markup=reply_markup,
                 parse_mode='html'
-                )
-
- 
-    
-   
-            
+                )           
         
         elif query.data == "hamid":
             buttons = [[
@@ -663,9 +689,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 
                 parse_mode='html'
             )
-  
-
-
 
             
         elif query.data.startswith("subinps"):
