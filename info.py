@@ -37,7 +37,7 @@ LOG_CHANNEL = int(environ.get('LOG_CHANNEL', 0))
 SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'TeamEvamaria')
 SINGLE_BUTTON = is_enabled((environ.get('SINGLE_BUTTON', "False")), False)
 CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", None)
-
+OMDB_API_KEY = environ.get("OMDB_API_KEY", "")
 
 
 LOG_STR = "Current Cusomized Configurations are:-\n"
@@ -63,7 +63,10 @@ if FILE_CAPTION.strip() == "":
     CUSTOM_FILE_CAPTION=None
 else:
     CUSTOM_FILE_CAPTION=FILE_CAPTION
-
+if OMDB_API_KEY.strip() == "":
+    API_KEY=None
+else:
+    API_KEY=OMDB_API_KEY
    
 
    
