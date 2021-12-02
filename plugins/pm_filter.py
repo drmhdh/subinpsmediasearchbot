@@ -65,7 +65,7 @@ async def give_filter(client,message):
                 break 
 
     else:
-        await client.send_message 
+        await subinps(client, message) 
 
 
                   
