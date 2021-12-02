@@ -65,11 +65,7 @@ async def give_filter(client,message):
                 break 
 
     else:
-        btn = []
-        search = message.text
-        nyva=BOT.get("username")
-        if not nyva:
-            botusername=await client.get_me()
+        botusername=await client.get_me()
             nyva=botusername.username
             BOT["username"]=nyva
         files = await get_filter_results(query=search)
@@ -80,6 +76,8 @@ async def give_filter(client,message):
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}", url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}")]
                 )
+       
+            
         
 @Client.on_message(filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.text & filters.private & filters.incoming)
 async def filter(client, message):
