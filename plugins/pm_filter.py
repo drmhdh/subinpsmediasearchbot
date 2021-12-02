@@ -26,7 +26,7 @@ BUTTONS = {}
 BOT = {}
 
 @Client.on_message(filters.group & filters.text & ~filters.edited & filters.incoming)  
-async def give_filter(client, message):
+async def give_filter(client, message, query):
     
     group_id = message.chat.id
     name = message.text
