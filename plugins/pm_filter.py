@@ -25,7 +25,7 @@ from database.filters_mdb import(
 BUTTONS = {}
 BOT = {}
 
-@Client.on_message(filters.group & filters.text & ~filters.edited & filters.incoming)  
+"""@Client.on_message(filters.group & filters.text & ~filters.edited & filters.incoming)  
 async def give_filter(client, message):
     
     group_id = message.chat.id
@@ -67,7 +67,7 @@ async def give_filter(client, message):
                 break 
         
     else:
-        await filter(client, message)
+        await filter(client, message)"""
 
 @Client.on_callback_query(filters.regex(r"^next"))
 async def next_page(bot, query):
