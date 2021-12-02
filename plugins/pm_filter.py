@@ -25,7 +25,7 @@ from database.filters_mdb import(
 BUTTONS = {}
 BOT = {}
 
-"""@Client.on_message(filters.group & filters.text & ~filters.edited & filters.incoming)  
+@Client.on_message(filters.group & filters.text & ~filters.edited & filters.incoming)  
 async def give_filter(client, message):
     
     group_id = message.chat.id
@@ -67,7 +67,15 @@ async def give_filter(client, message):
                 break 
         
     else:
-        await filter(client, message)"""
+        await filter(client, message)
+        files = await get_filter_results(query=search)
+        if files:
+            for file in files:
+                file_id = file.file_id
+                filename = f"[{get_size(file.file_size)}] {file.file_name}"
+                btn.append(
+                    [InlineKeyboardButton(text=f"{filename}", url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}")]
+                )
 
 
 @Client.on_message(filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.text & filters.private & filters.incoming)
