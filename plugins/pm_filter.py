@@ -67,7 +67,7 @@ async def give_filter(client, message):
                 break 
         
     else:
-        await filter(client, message)
+        await file(client, message)
 
         
         
