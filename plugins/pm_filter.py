@@ -968,10 +968,10 @@ async def group(client, message):
             box_office = imdb['box_office'],
             localized_title = imdb['localized_title'],
             **locals()
-        )
+        )"""
     else:
         cap = f"Here is what i found for your query {search}"
-    if imdb and imdb.get('poster'):
+    """if imdb and imdb.get('poster'):
         try:
             await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
@@ -982,9 +982,9 @@ async def group(client, message):
             logger.exception(e)
             await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
     else:
-        await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
+        await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))"""
     if spoll::
-        await query.answer("It Will Not Work for You, as It was Not Requested by:
+        
         await query.answer("It Will Not Work for You, as It was Not Requested by You 😒",show_alert=True)     
       
     
