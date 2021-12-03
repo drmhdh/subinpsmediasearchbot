@@ -837,8 +837,8 @@ async def auto_filter(client, msg, spoll=False):
             [InlineKeyboardButton(text="🗓 1/1",callback_data="pages")]
         )
     
-    else:
-        cap = f"Here is what i found for your query {search}" 
+    
+    cap = f"Here is what i found for your query {search}" 
       
     else:
         await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
