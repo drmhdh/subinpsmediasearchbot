@@ -200,7 +200,7 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'files#{file.file_id}'
+                    text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'subinps#{file.file_id}'
                 ),
             ]
             for file in files
@@ -209,11 +209,11 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"{file.file_name}", callback_data=f'files#{file.file_id}'
+                    text=f"{file.file_name}", callback_data=f'subinps#{file.file_id}'
                 ),
                 InlineKeyboardButton(
                     text=f"{get_size(file.file_size)}",
-                    callback_data=f'files_#{file.file_id}',
+                    callback_data=f'subinpss_#{file.file_id}',
                 ),
             ]
             for file in files
@@ -624,8 +624,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await query.message.delete()
             except:
                 await query.message.delete()
-    else:
-        await query.answer("It Will Not Work for You, as It was Not Requested by You 😒",show_alert=True) 
+    """else:
+        await query.answer("It Will Not Work for You, as It was Not Requested by You 😒",show_alert=True)""" 
                                                                               
     if query.data == "close_data":
         await query.message.delete()
@@ -945,5 +945,6 @@ async def auto_filter(client, msg, spoll=False):
         await msg.message.delete()
    
       
-      
+    else:
+        await query.answer("It Will Not Work for You, as It was Not Requested by You 😒",show_alert=True)     
       
