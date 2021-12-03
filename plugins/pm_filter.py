@@ -438,10 +438,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 )
 
  
-    
-   
-            
-        
         elif query.data == "hamid":
             buttons = [[
                 InlineKeyboardButton("🔎 Search", switch_inline_query_current_chat='')
@@ -549,8 +545,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await query.message.delete()
             except:
                 await query.message.delete()
-    """else:
-        await query.answer("It Will Not Work for You, as It was Not Requested by You 😒",show_alert=True)""" 
+    
                                                                               
     if query.data == "close_data":
         await query.message.delete()
@@ -748,47 +743,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
             alert = alert.replace("\\n", "\n").replace("\\t", "\t")
             await query.answer(alert,show_alert=True)
 
-
-
-    """if query.data.startswith("file"):
-        ident, file_id = query.data.split("#")
-        files_ = await get_file_details(file_id)
-        if not files_:
-            return await query.answer('No such file exist.')
-        files = files_[0]
-        title = files.file_name
-        size=get_size(files.file_size)
-        f_caption=files.caption
-        if CUSTOM_FILE_CAPTION:
-            try:
-                f_caption=CUSTOM_FILE_CAPTION.format(file_name=title, file_size=size, file_caption=f_caption)
-            except Exception as e:
-                logger.exception(e)
-            f_caption=f_caption
-        if f_caption is None:
-            f_caption = f"{files.file_name}"
-            
-        try:
-            if AUTH_CHANNEL and not await is_subscribed(client, query):
-                await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
-                return
-            elif P_TTI_SHOW_OFF:
-                await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
-                return
-            else:
-                await client.send_cached_media(
-                    chat_id=query.from_user.id,
-                    file_id=file_id,
-                    caption=f_caption
-                    )
-                await query.answer('Check PM, I have sent files in pm',show_alert = True)
-        except UserIsBlocked:
-            await query.answer('Unblock the bot mahn !',show_alert = True)
-        except PeerIdInvalid:
-            await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
-        except Exception as e:
-            await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")"""
-   
    
    
     if query.data.startswith("file"):
@@ -901,10 +855,10 @@ async def auto_filter(client, msg, spoll=False):
             if API_KEY:
                 poster=await get_poster(search)
             if poster:
-                await message.reply_photo(photo=poster, caption=f"<b>Here is What I Found In My Database For Your Query {search} ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_text(f"<b>{message.from_user.mention}, ☕️ 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗪𝗵𝗮𝘁 𝗜 𝗙𝗼𝘂𝗻𝗱 𝗳𝗼𝗿 𝗬𝗼𝘂𝗿 𝗤𝘂𝗲𝗿𝘆 ❝{search}❞ ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
 
             else:
-                await message.reply_text(f"<b>Here is What I Found In My Database For Your Query {search} ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_text(f"<b>{message.from_user.mention}, ☕️ 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗪𝗵𝗮𝘁 𝗜 𝗙𝗼𝘂𝗻𝗱 𝗳𝗼𝗿 𝗬𝗼𝘂𝗿 𝗤𝘂𝗲𝗿𝘆 ❝{search}❞ ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
             return
 
         data = BUTTONS[keyword]
@@ -971,9 +925,9 @@ async def group(client, message):
             if API_KEY:
                 poster=await get_poster(search)
             if poster:
-                await message.reply_photo(photo=poster, caption=f"<b>Here is What I Found In My Database For Your Query {search} ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_text(f"<b>{message.from_user.mention}, ☕️ 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗪𝗵𝗮𝘁 𝗜 𝗙𝗼𝘂𝗻𝗱 𝗳𝗼𝗿 𝗬𝗼𝘂𝗿 𝗤𝘂𝗲𝗿𝘆 ❝{search}❞ ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
             else:
-                await message.reply_text(f"<b>Here is What I Found In My Database For Your Query {search} ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_text(f"<b>{message.from_user.mention}, ☕️ 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗪𝗵𝗮𝘁 𝗜 𝗙𝗼𝘂𝗻𝗱 𝗳𝗼𝗿 𝗬𝗼𝘂𝗿 𝗤𝘂𝗲𝗿𝘆 ❝{search}❞ ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
             return
 
         data = BUTTONS[keyword]
@@ -991,9 +945,10 @@ async def group(client, message):
         if API_KEY:
             poster=await get_poster(search)
         if poster:
-            await message.reply_photo(photo=poster, caption=f"<b>Here is What I Found In My Database For Your Query {search} ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_text(f"<b>{message.from_user.mention}, ☕️ 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗪𝗵𝗮𝘁 𝗜 𝗙𝗼𝘂𝗻𝗱 𝗳𝗼𝗿 𝗬𝗼𝘂𝗿 𝗤𝘂𝗲𝗿𝘆 ❝{search}❞ ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
         else:
-            await message.reply_text(f"<b>Here is What I Found In My Database For Your Query {search} ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_text(f"<b>{message.from_user.mention}, ☕️ 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗪𝗵𝗮𝘁 𝗜 𝗙𝗼𝘂𝗻𝗱 𝗳𝗼𝗿 𝗬𝗼𝘂𝗿 𝗤𝘂𝗲𝗿𝘆 ❝{search}❞ ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
+            
 
     
 
