@@ -899,6 +899,8 @@ async def auto_filter(client, msg, spoll=False):
         key = f"{message.chat.id}-{message.message_id}"
         BUTTONS[key] = search
         req = message.from_user.id if message.from_user else 0
+        btns = list(split_list(btn, 10)) 
+        keyword = f"{message.chat.id}-{message.message_id}"
         data = BUTTONS[keyword]
         buttons = data['buttons'][0].copy()
 
