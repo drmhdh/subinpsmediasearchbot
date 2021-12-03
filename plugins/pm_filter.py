@@ -873,74 +873,35 @@ async def auto_filter(client, msg, spoll=False):
         message = msg.message.reply_to_message # msg will be callback query
         search, files, offset, total_results = spoll
     if SINGLE_BUTTON:
-        btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'files#{file.file_id}'
-                ),
-            ]
-            for file in files
-        ]
+    if len(btn) > 10: 
+        btns = list(split_list(btn, 10)) 
+        keyword = f"{message.chat.id}-{message.message_id}"
+        BUTTONS[keyword] = {
+            "total" : len(btns),
+            "buttons" : btns
+        }
     else:
-        btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"{file.file_name}",
-                    callback_data=f'files#{file.file_id}',
-                ),
-                InlineKeyboardButton(
-                    text=f"{get_size(file.file_size)}",
-                    callback_data=f'files#{file.file_id}',
-                ),
-            ]
-            for file in files
-        ]
-    else:
-            return
-        if not btn:
-            return
-
-        if len(btn) > 10: 
-            btns = list(split_list(btn, 10)) 
-            keyword = f"{message.chat.id}-{message.message_id}"
-            BUTTONS[keyword] = {
-                "total" : len(btns),
-                "buttons" : btns
-            }
-        else:
-            buttons = btn
-            buttons.append(
-                [InlineKeyboardButton(text="📃 Pages 1/1",callback_data="pages")]
-            )
-            if BUTTON:
-                buttons.append([InlineKeyboardButton(text="Close ❌",callback_data="close")])
-            poster=None
-            if API_KEY:
-                poster=await get_poster(search)
-            if poster:
-                await message.reply_photo(photo=poster, caption=f"<b>Here is What I Found In My Database For Your Query {search} ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
-            else:
-                await message.reply_text(f"<b>Here is What I Found In My Database For Your Query {search} ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
-            return
-
-        data = BUTTONS[keyword]
-        buttons = data['buttons'][0].copy()
-
+        buttons = btn
         buttons.append(
-            [InlineKeyboardButton(text="NEXT ⏩",callback_data=f"next_0_{keyword}")]
-        )    
-        buttons.append(
-            [InlineKeyboardButton(text=f"📃 Pages 1/{data['total']}",callback_data="pages")]
+            [InlineKeyboardButton(text="📃 Pages 1/1",callback_data="pages")]
         )
         if BUTTON:
             buttons.append([InlineKeyboardButton(text="Close ❌",callback_data="close")])
-        poster=None
-        if API_KEY:
-            poster=await get_poster(search)
-        if poster:
-            await message.reply_photo(photo=poster, caption=f"<b>Here is What I Found In My Database For Your Query {search} ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
-        else:
-            await message.reply_text(f"<b>Here is What I Found In My Database For Your Query {search} ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
+       
+
+    data = BUTTONS[keyword]
+    buttons = data['buttons'][0].copy()
+
+    buttons.append(
+        [InlineKeyboardButton(text="NEXT ⏩",callback_data=f"next_0_{keyword}")]
+    )    
+    buttons.append(
+        [InlineKeyboardButton(text=f"📃 Pages 1/{data['total']}",callback_data="pages")]
+    )
+    if BUTTON:
+        buttons.append([InlineKeyboardButton(text="Close ❌",callback_data="close")])
+    else:
+        await message.reply_text(f"<b>Here is What I Found In My Database For Your Query {search} ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
 
     
 def get_size(size):
@@ -956,7 +917,11 @@ def get_size(size):
 
 def split_list(l, n):
     for i in range(0, len(l), n):
-        yield l[i:i + n]          
+        yield l[i:i + n]
+   
+   
+   
+   
 
     
         
