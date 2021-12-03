@@ -904,20 +904,7 @@ async def auto_filter(client, msg, spoll=False):
         await message.reply_text(f"<b>Here is What I Found In My Database For Your Query {search} ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
 
     
-def get_size(size):
-    """Get size in readable format"""
 
-    units = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB"]
-    size = float(size)
-    i = 0
-    while size >= 1024.0 and i < len(units):
-        i += 1
-        size /= 1024.0
-    return "%.2f %s" % (size, units[i])
-
-def split_list(l, n):
-    for i in range(0, len(l), n):
-        yield l[i:i + n]
    
    
    
