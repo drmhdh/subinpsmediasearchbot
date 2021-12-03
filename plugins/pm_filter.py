@@ -952,7 +952,10 @@ async def group(client, message):
 
     
 
-   else   
+    
+    else:
+        await query.answer("It Will Not Work for You, as It was Not Requested by You 😒",show_alert=True)     
+      
       
     """imdb = await get_poster(search, file=(files[0]).file_name) if IMDB else None
     if imdb:
@@ -990,6 +993,6 @@ async def group(client, message):
         await msg.message.delete()"""
    
       
-    else:
-        await query.answer("It Will Not Work for You, as It was Not Requested by You 😒",show_alert=True)     
+    """else:
+        await query.answer("It Will Not Work for You, as It was Not Requested by You 😒",show_alert=True)""" 
       
