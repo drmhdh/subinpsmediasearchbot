@@ -954,7 +954,7 @@ async def group(client, message):
 
       
       
-    imdb = await get_poster(search, file=(files[0]).file_name) if IMDB else None
+    """imdb = await get_poster(search, file=(files[0]).file_name) if IMDB else None
     if imdb:
         cap = IMDB_TEMPLATE.format(
             query = search,
@@ -981,7 +981,7 @@ async def group(client, message):
     else:
         await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
     if spoll:
-        await msg.message.delete()
+        await msg.message.delete()"""
    
       
     else:
