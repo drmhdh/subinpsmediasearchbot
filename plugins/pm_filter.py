@@ -750,7 +750,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
 
-    if query.data.startswith("file"):
+    """if query.data.startswith("file"):
         ident, file_id = query.data.split("#")
         files_ = await get_file_details(file_id)
         if not files_:
@@ -787,9 +787,49 @@ async def cb_handler(client: Client, query: CallbackQuery):
         except PeerIdInvalid:
             await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
         except Exception as e:
-            await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
-
-
+            await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")"""
+   
+   
+   
+    if query.data.startswith("file"):
+        ident, file_id = query.data.split("#")
+        filedetails = await get_file_details(file_id)
+        for files in filedetails:
+            title = files.file_name
+            size=get_size(files.file_size)
+            f_caption=files.caption
+            if CUSTOM_FILE_CAPTION:
+                try:
+                    f_caption=CUSTOM_FILE_CAPTION.format(file_name=title, file_size=size, file_caption=f_caption)
+                 except Exception as e:
+                     print(e)
+                     f_caption=f_caption
+                if f_caption is None:
+                    f_caption = f"{files.file_name}"
+                
+                buttons = [
+                    [
+                        InlineKeyboardButton('🔎 Search', switch_inline_query_current_chat='')
+        
+                    ]
+                    ,
+                    [
+                        InlineKeyboardButton('📚🅳🆃 📖 🆁🅾🅾🅼📚', url='https://t.me/dent_tech_for_books')
+                    ]
+                
+                    ,
+                    [
+                        InlineKeyboardButton('𝗝𝗼𝗶𝗻 🦷𝔻𝕖𝕟𝕥𝕒𝕝 ℂ𝕒𝕤𝕖 𝕊𝕥𝕦𝕕𝕪🔎', url='https://t.me/dental_case_study')
+                    ]
+                    ]
+                
+                await query.answer()
+                await client.send_cached_media(
+                    chat_id=query.from_user.id,
+                    file_id=file_id,
+                    caption=f_caption,
+                    reply_markup=InlineKeyboardMarkup(buttons)
+                    )
 
       
 async def auto_filter(client, msg, spoll=False):
