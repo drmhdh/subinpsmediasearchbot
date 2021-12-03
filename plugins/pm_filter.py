@@ -833,15 +833,17 @@ async def auto_filter(client, msg, spoll=False):
             [InlineKeyboardButton(text=f"🗓 1/{round(int(total_results)/10)}",callback_data="pages"), InlineKeyboardButton(text="NEXT ⏩",callback_data=f"next_{req}_{key}_{offset}")]
         )
     else:
+        cap = f"Here is what i found for your query {search}"
+        await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
         btn.append(
             [InlineKeyboardButton(text="🗓 1/1",callback_data="pages")]
         )
     
     
-        cap = f"Here is what i found for your query {search}" 
+         
       
     
-        await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
+        
     if spoll:
         await msg.message.delete()
       
