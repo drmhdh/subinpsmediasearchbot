@@ -902,9 +902,14 @@ async def auto_filter(client, msg, spoll=False):
         data = BUTTONS[keyword]
         buttons = data['buttons'][0].copy()
 
-        btn.append(
-            [InlineKeyboardButton(text=f"🗓 1/{round(int(total_results)/10)}",callback_data="pages"), InlineKeyboardButton(text="NEXT ⏩",callback_data=callback_data=f"next_0_{keyword}")]
+        buttons.append(
+            [InlineKeyboardButton(text="NEXT ⏩",callback_data=f"next_0_{keyword}")]
+        )    
+        buttons.append(
+            [InlineKeyboardButton(text=f"📃 Pages 1/{data['total']}",callback_data="pages")]
         )
+        if BUTTON:
+            buttons.append([InlineKeyboardButton(text="Close ❌",callback_data="close")])
     else:
         btn.append(
             [InlineKeyboardButton(text="🗓 1/1",callback_data="pages")]
