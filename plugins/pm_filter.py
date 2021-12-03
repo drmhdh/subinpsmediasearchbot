@@ -902,8 +902,7 @@ async def auto_filter(client, msg, spoll=False):
         btns = list(split_list(btn, 10)) 
         keyword = f"{message.chat.id}-{message.message_id}"
         data = BUTTONS[keyword]
-        buttons = data['buttons'][0].copy()
-
+        
         buttons.append(
             [InlineKeyboardButton(text="NEXT ⏩",callback_data=f"next_0_{keyword}")]
         )    
