@@ -1,5 +1,5 @@
 #Kanged From @TroJanZheX
-from info import AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, AUTH_GROUPS, BUTTON, START_MSG, CHANNELS, ADMINS, PICS, SINGLE_BUTTON, API_KEY, P_TTI_SHOW_OFF
+from info import AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, AUTH_GROUPS, BUTTON, START_MSG, CHANNELS, ADMINS, PICS, SINGLE_BUTTON, API_KEY, P_TTI_SHOW_OFF, IMDB, IMDB_TEMPLATE
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
