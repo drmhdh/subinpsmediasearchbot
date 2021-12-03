@@ -895,14 +895,37 @@ async def auto_filter(client, msg, spoll=False):
             ]
             for file in files
         ]
-    if offset != "":
-        key = f"{message.chat.id}-{message.message_id}"
-        BUTTONS[key] = search
-        req = message.from_user.id if message.from_user else 0
-        
-        keyword = f"{message.chat.id}-{message.message_id}"
+    else:
+            return
+        if not btn:
+            return
+
+        if len(btn) > 10: 
+            btns = list(split_list(btn, 10)) 
+            keyword = f"{message.chat.id}-{message.message_id}"
+            BUTTONS[keyword] = {
+                "total" : len(btns),
+                "buttons" : btns
+            }
+        else:
+            buttons = btn
+            buttons.append(
+                [InlineKeyboardButton(text="📃 Pages 1/1",callback_data="pages")]
+            )
+            if BUTTON:
+                buttons.append([InlineKeyboardButton(text="Close ❌",callback_data="close")])
+            poster=None
+            if API_KEY:
+                poster=await get_poster(search)
+            if poster:
+                await message.reply_photo(photo=poster, caption=f"<b>Here is What I Found In My Database For Your Query {search} ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
+            else:
+                await message.reply_text(f"<b>Here is What I Found In My Database For Your Query {search} ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
+            return
+
         data = BUTTONS[keyword]
         buttons = data['buttons'][0].copy()
+
         buttons.append(
             [InlineKeyboardButton(text="NEXT ⏩",callback_data=f"next_0_{keyword}")]
         )    
@@ -911,6 +934,30 @@ async def auto_filter(client, msg, spoll=False):
         )
         if BUTTON:
             buttons.append([InlineKeyboardButton(text="Close ❌",callback_data="close")])
+        poster=None
+        if API_KEY:
+            poster=await get_poster(search)
+        if poster:
+            await message.reply_photo(photo=poster, caption=f"<b>Here is What I Found In My Database For Your Query {search} ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
+        else:
+            await message.reply_text(f"<b>Here is What I Found In My Database For Your Query {search} ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
+
+    
+def get_size(size):
+    """Get size in readable format"""
+
+    units = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB"]
+    size = float(size)
+    i = 0
+    while size >= 1024.0 and i < len(units):
+        i += 1
+        size /= 1024.0
+    return "%.2f %s" % (size, units[i])
+
+def split_list(l, n):
+    for i in range(0, len(l), n):
+        yield l[i:i + n]          
+
     
         
     imdb = await get_poster(search, file=(files[0]).file_name) if IMDB else None
