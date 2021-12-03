@@ -794,6 +794,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
     if query.data.startswith("file"):
         ident, file_id = query.data.split("#")
         filedetails = await get_file_details(file_id)
+        files_ = await get_file_details(file_id)
+        if not files_:
+            return await query.answer('No such file exist.')
+        files = files_[0]
         for files in filedetails:
             title = files.file_name
             size=get_size(files.file_size)
@@ -830,6 +834,28 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     caption=f_caption,
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
+
+            try:
+                if AUTH_CHANNEL and not await is_subscribed(client, query):
+                    await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
+                    return
+                elif P_TTI_SHOW_OFF:
+                    await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
+                    return
+                else:
+                    await client.send_cached_media(
+                        chat_id=query.from_user.id,
+                        file_id=file_id,
+                        caption=f_caption
+                        )
+                    await query.answer('Check PM, I have sent files in pm',show_alert = True)
+        except UserIsBlocked:
+            await query.answer('Unblock the bot mahn !',show_alert = True)
+        except PeerIdInvalid:
+            await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
+        except Exception as e:
+            await query.answer(url=f"https://t.me/{temp.U_NAME}?start={file_id}")
+      
 
       
 async def auto_filter(client, msg, spoll=False):
@@ -874,7 +900,7 @@ async def auto_filter(client, msg, spoll=False):
         BUTTONS[key] = search
         req = message.from_user.id if message.from_user else 0
         btn.append(
-            [InlineKeyboardButton(text=f"🗓 1/{round(int(total_results)/10)}",callback_data="pages"), InlineKeyboardButton(text="NEXT ⏩",callback_data=f"next_{req}_{key}_{offset}")]
+            [InlineKeyboardButton(text=f"🗓 1/{round(int(total_results)/10)}",callback_data="pages"), InlineKeyboardButton(text="NEXT ⏩",callback_data=callback_data=f"next_0_{keyword}")]
         )
     else:
         btn.append(
