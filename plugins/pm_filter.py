@@ -872,7 +872,7 @@ async def auto_filter(client, msg, spoll=False):
     else:
         message = msg.message.reply_to_message # msg will be callback query
         search, files, offset, total_results = spoll
-    if SINGLE_BUTTON:
+    
     if len(btn) > 10: 
         btns = list(split_list(btn, 10)) 
         keyword = f"{message.chat.id}-{message.message_id}"
