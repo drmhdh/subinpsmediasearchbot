@@ -980,7 +980,7 @@ async def group(client, message):
             await message.reply_photo(photo=poster, caption=cap, reply_markup=InlineKeyboardMarkup(btn))
         except Exception as e:
             logger.exception(e)
-            await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
+            await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))"""
     else:
         await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))"""
     if spoll::
@@ -993,6 +993,6 @@ async def group(client, message):
         await msg.message.delete()"""
    
       
-    """else:
+ """else:
         await query.answer("It Will Not Work for You, as It was Not Requested by You 😒",show_alert=True)""" 
       
