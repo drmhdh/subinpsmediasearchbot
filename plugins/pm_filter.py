@@ -549,8 +549,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                                                                               
     if query.data == "close_data":
         await query.message.delete()
-    else:
-        return
+        else:
+            return
 
         st = await client.get_chat_member(grp_id, userid)
         if (st.status == "creator") or (str(userid) in ADMINS):    
