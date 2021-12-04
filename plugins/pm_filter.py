@@ -555,10 +555,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     try:
                         chat = await client.get_chat(grpid)
                         title = chat.title
-                    
+                else:
+                await query.message.edit_text(
+                    "I dont know Where Iam..!!",
+                    show_alert=True
+                )
+                return
                 
                     
-                        return
+                        
              
             elif chat_type in ["group", "supergroup"]:
                 grp_id = query.message.chat.id
