@@ -555,12 +555,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     try:
                         chat = await client.get_chat(grpid)
                         title = chat.title
+                    
+                    return   
                 else:
-                await query.message.edit_text(
-                    "I dont know Where Iam..!!",
-                    show_alert=True
-                )
-                return
+                    await query.answer(
+                        "I dont know Where Iam..!!",
+                        show_alert=True
+                    )
+                    return
                 
                     
                         
