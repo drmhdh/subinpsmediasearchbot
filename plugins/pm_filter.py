@@ -552,11 +552,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
     else:
         
 
-        st = await client.get_chat_member(grp_id, userid)
-        if (st.status == "creator") or (str(userid) in ADMINS):    
-            await close_data(query.message, grp_id, title)
-        else:
-            await query.answer("You need to be Group Owner or an Admin to do that!",show_alert=True)        
+    st = await client.get_chat_member(grp_id, userid)
+    if (st.status == "creator") or (str(userid) in ADMINS):    
+        await close_data(query.message, grp_id, title)
+    else:
+        await query.answer("You need to be Group Owner or an Admin to do that!",show_alert=True)        
         
                                            
     elif query.data == "delallconfirm":
