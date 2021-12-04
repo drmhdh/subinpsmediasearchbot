@@ -564,10 +564,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     
                     try:
                         await query.message.delete()
-                    
+                    except:
+                        pass
                         
-                    else:
-                        await query.answer("Thats not for you!!",show_alert=True)
+                else:
+                    await query.answer("Thats not for you!!",show_alert=True)
     
    
    
