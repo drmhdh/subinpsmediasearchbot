@@ -557,7 +557,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         title = chat.title
                     
                 
-                    )
+                    
                     return
              
             elif chat_type in ["group", "supergroup"]:
