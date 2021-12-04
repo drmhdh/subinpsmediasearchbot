@@ -919,7 +919,6 @@ async def auto_filter(client, msg, spoll=False):
         await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))"""
     if spoll::
         
-        await query.answer("It Will Not Work for You, as It was Not Requested by You 😒",show_alert=True)     
       
     
       
