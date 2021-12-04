@@ -566,8 +566,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         await query.message.delete()
                     
                         
-                else:
-                    await query.answer("Thats not for you!!",show_alert=True)
+                    else:
+                        await query.answer("Thats not for you!!",show_alert=True)
     
    
    
