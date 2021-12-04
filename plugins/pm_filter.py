@@ -556,18 +556,18 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 grp_id = query.message.chat.id
                 title = query.message.chat.title
                
-                else:
-                    return
+            else:
+                return
                
-                st = await client.get_chat_member(grp_id, userid)
-                if (st.status == "creator") or (str(userid) in ADMINS):
-                    await query.message.delete()
-                    try:
-                        await query.message.reply_to_message.delete()
-                    except:
-                        pass
-                else:
-                    await query.answer("Thats not for you!!",show_alert=True)
+            st = await client.get_chat_member(grp_id, userid)
+            if (st.status == "creator") or (str(userid) in ADMINS):
+                await query.message.delete()
+                try:
+                    await query.message.reply_to_message.delete()
+                except:
+                    pass
+            else:
+                await query.answer("Thats not for you!!",show_alert=True)
     
    
    
