@@ -553,6 +553,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             if chat_type == "private":
                 await query.message.reply_to_message.delete()
                 await query.message.delete()
+            except:
+                await query.message.delete()
                 
                     
                         
