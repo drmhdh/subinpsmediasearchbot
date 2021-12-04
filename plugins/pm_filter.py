@@ -554,6 +554,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
             elif chat_type in ["group", "supergroup"]:
                 grp_id = query.message.chat.id
+                title = query.message.chat.title
+               
+                else:
+                    return
+               
                 st = await client.get_chat_member(grp_id, userid)
                 if (st.status == "creator") or (str(userid) in ADMINS):
                     await query.message.delete()
