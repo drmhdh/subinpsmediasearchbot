@@ -880,53 +880,29 @@ async def auto_filter(client, msg, spoll=False):
         else:
             await message.reply_text(f"<b>{message.from_user.mention}, ☕️ 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗪𝗵𝗮𝘁 𝗜 𝗙𝗼𝘂𝗻𝗱 𝗳𝗼𝗿 𝗬𝗼𝘂𝗿 𝗤𝘂𝗲𝗿𝘆 ❝{search}❞ ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
 
-            
-            
-
-            
-
-    
-
-    
-         
-      
-      
-    imdb = await get_poster(search, file=(files[0]).file_name) if IMDB else None
-    if imdb:
-        cap = IMDB_TEMPLATE.format(
-            query = search,
-            title = imdb['title'],
-            votes = imdb['votes'],
-            aka = imdb["aka"],
-            seasons = imdb["seasons"],
-            box_office = imdb['box_office'],
-            localized_title = imdb['localized_title'],
-            **locals()
-        )
-    else:
-        cap = f"Here is what i found for your query {search}"
-    if imdb and imdb.get('poster'):
-        try:
-            await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
-        except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-            pic = imdb.get('poster')
-            poster = pic.replace('.jpg', "._V1_UX360.jpg")
-            await message.reply_photo(photo=poster, caption=cap, reply_markup=InlineKeyboardMarkup(btn))
-        except Exception as e:
-            logger.exception(e)
+        imdb = await get_poster(search, file=(files[0]).file_name) if IMDB else None
+        if imdb:
+            cap = IMDB_TEMPLATE.format(
+                query = search,
+            )
+        else:
+            cap = f"Here is what i found for your query {search}"
+        if imdb and imdb.get('poster'):
+            try:
+                await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
+            except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+                pic = imdb.get('poster')
+                poster = pic.replace('.jpg', "._V1_UX360.jpg")
+                await message.reply_photo(photo=poster, caption=cap, reply_markup=InlineKeyboardMarkup(btn))
+            except Exception as e:
+                logger.exception(e)
+                await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
+        else:
             await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
-    else:
-        await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))"""
-    if spoll::
-        
-      
-    
-      
-
-        await msg.message.delete()
+        if spoll:
+            await msg.message.delete()
    
-      
- 
+     
 
     else:
         await query.answer("It Will Not Work for You, as It was Not Requested by You 😒",show_alert=True)
