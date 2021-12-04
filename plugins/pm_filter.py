@@ -551,10 +551,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
             chat_type = query.message.chat.type
 
             if chat_type == "private":
-                try:
+                
                     
-                    await query.message.delete()
-                    return
+                await query.message.delete()
+                return
                     
                 
                     
@@ -564,9 +564,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 grp_id = query.message.chat.id
                 st = await client.get_chat_member(grp_id, userid)
                 if (st.status == "creator") or (str(userid) in ADMINS):
-                    try:
+                    
                         
-                        await query.message.delete()
+                    await query.message.delete()
                     
                         
                 else:
