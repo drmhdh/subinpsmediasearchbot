@@ -544,42 +544,35 @@ async def cb_handler(client: Client, query: CallbackQuery):
       
         
                   
+        
+        
         elif query.data == "close":
             userid = query.from_user.id
             chat_type = query.message.chat.type
-            
+
             if chat_type == "private":
-                grpid  = await active_connection(str(userid))
-                if grpid is not None:
-                    grp_id = grpid
-                    try:
-                        chat = await client.get_chat(grpid)
-                        title = chat.title
-                    
-                    return   
-                else:
-                    await query.answer(
-                        "I dont know Where Iam..!!",
-                        show_alert=True
-                    )
-                    return
+                await query.message.reply_to_message.delete()
+                await query.message.delete()
                 
                     
                         
              
             elif chat_type in ["group", "supergroup"]:
                 grp_id = query.message.chat.id
-                title = query.message.chat.title
-
-            else:
-                return
-
-            st = await client.get_chat_member(grp_id, userid)
-            if (st.status == "creator") or (str(userid) in ADMINS):    
-                await query.message.delete(query.message, grp_id, title)
-            else:
-                await query.answer("You need to be Group Owner or an Auth User to do that!",show_alert=True)        
+                st = await client.get_chat_member(grp_id, userid)
+                if (st.status == "creator") or (str(userid) in ADMINS):
+                    await query.message.delete()
+                    try:
+                        await query.message.reply_to_message.delete()
+                    except:
+                        pass
+                else:
+                    await query.answer("Thats not for you!!",show_alert=True)
+    
         
+            
+                
+
                 
 
                 
