@@ -871,8 +871,7 @@ async def auto_filter(client, msg, spoll=False):
                    [InlineKeyboardButton(text=f"{filename}", url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}")]
                     )
             
-        if not btn:
-            return
+        
     
         if len(btn) > 10: 
             btns = list(split_list(btn, 10)) 
