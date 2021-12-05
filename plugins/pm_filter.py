@@ -827,7 +827,6 @@ async def auto_filter(client, msg, spoll=False):
         typed = query.from_user.id
         pass
     if (clicked == typed) or (clicked in AUTH_USERS):
-    
         if not spoll:
             message = msg
             if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
@@ -847,7 +846,7 @@ async def auto_filter(client, msg, spoll=False):
                     filename = f"[{get_size(file.file_size)}] {file.file_name}"
                     btn.append(
                        [InlineKeyboardButton(text=f"{filename}", url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}")]
-                       )
+                        )
             else:
                 return
             if not btn:
@@ -866,7 +865,7 @@ async def auto_filter(client, msg, spoll=False):
                 buttons.append(
                     [InlineKeyboardButton(text="📃 Pages 1/1",callback_data="pages")]
                 )
-               if BUTTON:
+                if BUTTON:
                     buttons.append([InlineKeyboardButton(text="Close ❌",callback_data="close")])
                 poster=None
                 if API_KEY:
@@ -911,5 +910,8 @@ async def auto_filter(client, msg, spoll=False):
      
 
     else:
-        await query.answer("It Will Not Work for You, as It was Not Requested by You 😒",show_alert=True)
+        await query.answer("It Will Not Work for You, as It was Not Requested by You 😒",show_alert=True)     
+       
+      
+      
       
