@@ -292,7 +292,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     except:
         typed = query.from_user.id
         pass
-    if (clicked == typed) or (clicked in AUTH_USERS):
+    if (clicked == typed) or (clicked in AUTH_USERS) or (clicked in ADMINS):   
 
         if query.data.startswith("next"):
             ident, index, keyword = query.data.split("_")
@@ -819,14 +819,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
       
 
       
-async def auto_filter(client: Client, msg: CallbackQuery, spoll=False): #async def auto_filter(client, msg, spoll=False):
+async def auto_filter(client, msg, spoll=False): #async def auto_filter(client, msg, spoll=False):
     clicked = msg.from_user.id
     try:
         typed = msg.message.reply_to_message.from_user.id
     except:
         typed = msg.from_user.id
         pass
-    if (clicked == typed) or (clicked in AUTH_USERS):
+    if (clicked == typed) or (clicked in AUTH_USERS) or (clicked in ADMINS):
         if not spoll:
             message = msg
             if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
