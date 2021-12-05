@@ -551,31 +551,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
         
         
         elif query.data == "close":
-            userid = query.from_user.id
-            chat_type = query.message.chat.type
+            await query.message.delete()
+            
+    else:
+        await query.answer("Thats not for you!!",show_alert=True)
 
-            if chat_type == "private":
-                
-                    
-                await query.message.delete()
-                return
-                    
                 
                     
                         
              
-            elif chat_type in ["group", "supergroup"]:
-                grp_id = query.message.chat.id
-                st = await client.get_chat_member(grp_id, userid)
-                if (st.status == 'administrator','creator') or (str(userid) in ADMINS):
-                    
-                        
-                    await query.message.delete()
-                    
-                        
-                else:
-                    await query.answer("Thats not for you!!",show_alert=True)
-    
+            
         
             
                 
