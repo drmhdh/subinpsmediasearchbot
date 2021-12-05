@@ -292,7 +292,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     except:
         typed = query.from_user.id
         pass
-    if (clicked == typed):
+    if (clicked == typed) or (clicked in AUTH_USERS):
 
         if query.data.startswith("next"):
             ident, index, keyword = query.data.split("_")
