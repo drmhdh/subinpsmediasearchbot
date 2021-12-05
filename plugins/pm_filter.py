@@ -819,7 +819,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
       
 
       
-async def auto_filter(client, msg, spoll=False):
+async def auto_filter(client: Client, msg: CallbackQuery, spoll=False): #async def auto_filter(client, msg, spoll=False):
     clicked = msg.from_user.id
     try:
         typed = msg.message.reply_to_message.from_user.id
