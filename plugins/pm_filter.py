@@ -839,13 +839,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
       
 async def auto_filter(client, msg, spoll=False):
-    clicked = query.from_user.id
-    try:
-        typed = query.message.reply_to_message.from_user.id
-    except:
-        typed = query.from_user.id
-        pass
-    if (clicked == typed) or (clicked in AUTH_USERS):
+clicked = query.from_user.id
+try:
+    typed = query.message.reply_to_message.from_user.id
+except:
+    typed = query.from_user.id
+    pass
+if (clicked == typed) or (clicked in AUTH_USERS):
     
     if not spoll:
         message = msg
