@@ -259,13 +259,13 @@ async def channel_info(bot, message):
         await message.reply_document(file)
         os.remove(file)
 
-@Client.on_message(filters.command('logs') & filters.user(ADMINS))
+"""@Client.on_message(filters.command('logs') & filters.user(ADMINS))
 async def log_file(bot, message):
     """Send log file"""
     try:
         await message.reply_document('TelegramBot.log')
     except Exception as e:
-        await message.reply(str(e))
+        await message.reply(str(e))"""
 
         
         
@@ -361,3 +361,30 @@ async def ping(bot, cmd):
         )
 
         
+@Client.on_message(filters.command('deleteall') & filters.user(ADMINS))
+async def delete_all_index(bot, message):
+    await message.reply_text(
+        'This will delete all indexed files.\nDo you want to continue??',
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        text="YES", callback_data="autofilter_delete"
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        text="CANCEL", callback_data="close_data"
+                    )
+                ],
+            ]
+        ),
+        quote=True,
+    )
+
+@Client.on_callback_query(filters.regex(r'^autofilter_delete'))
+async def delete_all_index_confirm(bot, message):
+    await Media.collection.drop()
+    await message.answer()
+    await message.message.edit('Succesfully Deleted All The Indexed Files.')   
+    
