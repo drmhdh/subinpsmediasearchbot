@@ -832,7 +832,7 @@ async def auto_filter(client, msg, spoll=False): #async def auto_filter(client, 
             if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
                 return
             if 2 < len(message.text) < 100:
-                btn = []
+            btn = []
             search = message.text
             nyva=BOT.get("username")
             if not nyva:
