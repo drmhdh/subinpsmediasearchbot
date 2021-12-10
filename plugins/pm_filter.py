@@ -34,7 +34,7 @@ async def echo(client, message):
          
             if message.reply_to_media:
                 await message.reply_media(caption=message.text.replace("/echo", " "), reply_markup=InlineKeyboardMarkup)
-            except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+            
             
             
             
