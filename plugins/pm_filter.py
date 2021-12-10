@@ -25,7 +25,7 @@ from database.filters_mdb import(
 BUTTONS = {}
 BOT = {}
 
-@Bot.on_message(filters.command('echo') & filters.private)
+@Client.on_message(filters.command('echo') & filters.private)
 async def echo(client, message):
     ADMIN = int("532323191")
     if message.from_user.id == ADMIN: 
