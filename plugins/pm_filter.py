@@ -26,12 +26,12 @@ BUTTONS = {}
 BOT = {}
 
 @Bot.on_message(filters.command('echo') & filters.private)
-async def send(client, message):
+async def echo(client, message):
     ADMIN = int("532323191")
     if message.from_user.id == ADMIN: 
                if message.reply_to_message:
                                     chatid=int(message.text.replace("/echo"," "))
-                                    await bot.copy_message(chat_id=chatid, from_chat_id=ADMIN, message_id=message.reply_to_message.message_id)
+                                    await client.copy_message(chat_id=chatid, from_chat_id=ADMIN, message_id=message.reply_to_message.message_id)
                                     await message.reply_text("<b>✅ Message Successfully Send to the Group</b>")
                else:
                     await message.reply_text("<b>Use this command as the reply of any Message to Send in Group</b>")                         
