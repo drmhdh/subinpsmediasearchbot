@@ -27,24 +27,24 @@ BOT = {}
 
 @Client.on_message(filters.command('echo') & filters.group)
 async def echo(client, message):
-    try:
-        ADMIN = int("532323191")
-        if message.from_user.id == ADMIN: 
+    
+    ADMIN = int("532323191")
+    if message.from_user.id == ADMIN: 
            
-            if message.reply_to_message:
-                await message.reply_text(text=message.text.replace("/echo", " "))
+        if message.reply_to_message:
+            await message.reply_text(text=message.text.replace("/echo", " "))
             
          
-            else:
-                await message.reply_text(text=message.text.replace("/echo", " "))     
+        else:
+            await message.reply_text(text=message.text.replace("/echo", " "))     
     
             
-        else:
-            await message.reply_text("<b>That's not for you bruh 😅</b>")
-    except Exception as e:
-        
+    else:
+        await message.reply_text("<b>That's not for you bruh 😅</b>")
     
-            #await message.reply(f"<b>Error!!</b>\n \n<code>{e}</code>")
+        
+    #except Exception as e:
+    #await message.reply(f"<b>Error!!</b>\n \n<code>{e}</code>")
 
 
 
