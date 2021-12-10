@@ -31,7 +31,7 @@ async def echo(client, message):
         ADMIN = int("532323191")
         if message.from_user.id == ADMIN: 
                    if message.reply_to_message:
-                       await client.send_message(chat_id=message.chat.id, text=message.text.replace("/echo", " "), reply_to_message_id=message.reply_to_message.mesage_id)
+                       await client.send_message(chat_id=message.chat.id, text=message.text.replace("/echo", " "), message_id=message.reply_to_message.mesage_id)
                    else:
                         await message.reply_text("<b>Use this command as the reply of any Message</b>")                         
         else:
