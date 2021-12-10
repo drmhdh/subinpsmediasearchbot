@@ -33,7 +33,7 @@ async def echo(client, message):
             if message.reply_to_message:
                 await message.reply_text(text=message.text.replace("/echo", " "))
             else:
-                await message.reply_text("<b>Use this command as the reply of any Message</b>")                         
+                await message.reply_text(text=message.text.replace("/echo", " "))                
         else:
             await message.reply_text("<b>That's not for you bruh 😅</b>")
     except Exception as e:
