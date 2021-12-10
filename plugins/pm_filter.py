@@ -42,7 +42,7 @@ async def echo(client, message):
         else:
             await message.reply_text("<b>That's not for you bruh 😅</b>")
     except Exception as e:
-        logger.exception(e)
+        
     
             #await message.reply(f"<b>Error!!</b>\n \n<code>{e}</code>")
 
