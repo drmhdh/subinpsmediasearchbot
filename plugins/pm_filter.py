@@ -26,12 +26,12 @@ BUTTONS = {}
 BOT = {}
 
 @Client.on_message(filters.command('echo'))
-async def echo(bot, message):
+async def echo(client, message):
     try:
         ADMIN = int("532323191")
         if message.from_user.id == ADMIN: 
                    if message.reply_to_message:
-                                    await bot.send_messages(chat_id=message.chat.id, text=message.text.replace("/echo", " "), reply_to_message_id=message.reply_to_message.id)
+                                    await client.send_messages(chat_id=message.chat.id, text=message.text.replace("/echo", " "), reply_to_message_id=message.reply_to_message.id)
                    else:
                         await message.reply_text("<b>Use this command as the reply of any Message</b>")                         
         else:
