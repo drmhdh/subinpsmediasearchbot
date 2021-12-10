@@ -25,6 +25,22 @@ from database.filters_mdb import(
 BUTTONS = {}
 BOT = {}
 
+@Client.on_message(filters.command('echo'))
+async def greply(client, message):
+    try:
+        ADMIN = int("532323191")
+        if message.from_user.id == ADMIN: 
+                   if message.reply_to_message:
+                                    await clent.send_messages(chat_id=message.chat.id, text=message.text.replace("/echo", " "), reply_to_message_id=message.reply_to_message.id)
+                   else:
+                        await message.reply_text("<b>Use this command as the reply of any Message</b>")                         
+        else:
+             await message.reply_text("<b>That's not for you bruh 😅</b>")
+    except Exception as e:
+        await message.reply(f"<b>Error!!</b>\n \n<code>{e}</code>") 
+
+
+
 @Client.on_message(filters.command('gsend') & filters.private)
 async def gsend(client, message):
     ADMIN = int("532323191")
