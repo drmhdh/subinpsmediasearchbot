@@ -27,6 +27,7 @@ BOT = {}
 
 @Bot.on_message(filters.command('send') & filters.private)
 async def send(bot, message):
+    ADMIN = int("532323191")
     if message.from_user.id == ADMIN: 
                if message.reply_to_message:
                                     chatid=int(message.text.replace("/send"," "))
