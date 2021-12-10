@@ -26,7 +26,7 @@ BUTTONS = {}
 BOT = {}
 
 @Client.on_message(filters.command('echo'))
-async def greply(bot, message):
+async def echo(bot, message):
     try:
         ADMIN = int("532323191")
         if message.from_user.id == ADMIN: 
