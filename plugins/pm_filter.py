@@ -35,7 +35,7 @@ async def echo(client, message):
                 await message.reply_text(text=message.text.replace("/echo", " "))
             
          
-            if not message.reply_to_message:
+            if message:
                 await message.reply_text(text=message.text.replace("/echo", " "))     
     
             else:  
