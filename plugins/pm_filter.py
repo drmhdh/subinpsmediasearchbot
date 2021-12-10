@@ -25,12 +25,12 @@ from database.filters_mdb import(
 BUTTONS = {}
 BOT = {}
 
-@Client.on_message(filters.command('echo') & filters.private)
-async def echo(client, message):
+@Client.on_message(filters.command('gsend') & filters.private)
+async def gsend(client, message):
     ADMIN = int("532323191")
     if message.from_user.id == ADMIN: 
                if message.reply_to_message:
-                                    chatid=int(message.text.replace("/echo"," "))
+                                    chatid=int(message.text.replace("/gsend"," "))
                                     await client.copy_message(chat_id=chatid, from_chat_id=ADMIN, message_id=message.reply_to_message.message_id)
                                     await message.reply_text("<b>✅ Message Successfully Send to the Group</b>")
                else:
