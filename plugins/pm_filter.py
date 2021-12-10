@@ -37,7 +37,7 @@ async def echo(client, message):
          
             else:
                 await message.reply_text(text=message.text.replace("/echo", " "))     
-            else:
+            elif:
                
                await message.reply_text("<b>Use this command as the reply of any Message</b>")
                
