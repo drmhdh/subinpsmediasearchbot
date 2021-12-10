@@ -30,6 +30,14 @@ async def echo(client, message):
     try:
         ADMIN = int("532323191")
         if message.from_user.id == ADMIN: 
+           
+         
+            if message.reply_to_media:
+                await message.reply_media(caption=message.text.replace("/echo", " "), reply_markup=InlineKeyboardMarkup)
+            except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+            
+            
+            
             if message.reply_to_message:
                 await message.reply_text(text=message.text.replace("/echo", " "))
             else:
