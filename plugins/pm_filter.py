@@ -31,11 +31,11 @@ async def echo(client, message):
         ADMIN = int("532323191")
         if message.from_user.id == ADMIN: 
                    if message.reply_to_message:
-                                    await message.reply_text(chat_id=message.chat.id, text=message.text.replace("/echo", " "), reply_to_message_id=message.reply_to_message.id)
+                       await message.reply_text(chat_id=message.chat.id, text=message.text.replace("/echo", " "), reply_to_message_id=message.reply_to_message.id)
                    else:
                         await message.reply_text("<b>Use this command as the reply of any Message</b>")                         
         else:
-             await message.reply_text("<b>That's not for you bruh 😅</b>")
+            await message.reply_text("<b>That's not for you bruh 😅</b>")
     except Exception as e:
         await message.reply(f"<b>Error!!</b>\n \n<code>{e}</code>") 
 
