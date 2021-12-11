@@ -855,12 +855,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
       
 
       
-async def auto_filter(client, msg, spoll=False): #async def auto_filter(client, msg, spoll=False):
-    clicked = msg.from_user.id
+async def auto_filter(client, message, spoll=False): #async def auto_filter(client, msg, spoll=False):
+    clicked = message.from_user.id
     try:
-        typed = msg.message.reply_to_message.from_user.id
+        typed = message.message.reply_to_message.from_user.id
     except:
-        typed = msg.from_user.id
+        typed = message.from_user.id
         pass
     if (clicked == typed) or (clicked in AUTH_USERS) or (clicked in ADMINS):
         if not spoll:
