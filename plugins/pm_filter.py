@@ -31,7 +31,7 @@ async def echo(client, message):
     ADMIN = int("532323191")
     if message.from_user.id == ADMIN: 
            
-        if message.reply_to_message:
+        if message.reply_to_message.from_user:
             await message.reply_text(text=message.text.replace("/echo", " "))
             
          
