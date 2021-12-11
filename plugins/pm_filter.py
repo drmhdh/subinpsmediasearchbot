@@ -864,7 +864,7 @@ async def auto_filter(client, message, spoll=False): #async def auto_filter(clie
         pass
     if (clicked == typed) or (clicked in AUTH_USERS) or (clicked in ADMINS):
         if not spoll:
-            message = msg
+            #message = msg
             if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
                 return
             if 2 < len(message.text) < 100:
