@@ -26,13 +26,13 @@ BUTTONS = {}
 BOT = {}
 
 @Client.on_message(filters.command('echo') & filters.group)
-async def echo(client, message):
+async def echo(bot, message):
     
     ADMIN = int("532323191")
     if message.from_user.id == ADMIN: 
            
         if message.reply_to_message:
-            await client.reply_text(message_id=message.reply_to_message.message_id, text=message.text.replace("/echo", " "))
+            await bot.reply_text(message_id=message.reply_to_message.message_id, text=message.text.replace("/echo", " "))
             
          
         else:
