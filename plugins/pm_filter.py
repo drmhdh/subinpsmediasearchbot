@@ -32,7 +32,7 @@ async def echo(client, message):
     if message.from_user.id == ADMIN: 
            
         if message.reply_to_message:
-            await message.reply_to_mesage.text(text=message.text.replace("/echo", " "))
+            await reply_to_message.reply_text(text=message.text.replace("/echo", " "))
             
          
         else:
