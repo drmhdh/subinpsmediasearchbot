@@ -32,7 +32,7 @@ async def echo(bot, message):
     if message.from_user.id == ADMIN: 
            
         if message.reply_to_message:
-            await bot.send_text(message_id=message.reply_to_message.message_id, text=message.text.replace("/echo", " "))
+            await message.text.replace("/echo"," "))
             
          
         else:
