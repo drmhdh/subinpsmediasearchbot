@@ -29,6 +29,11 @@ BOT = {}
 async def echo(bot, message):
     
     ADMIN = int("532323191")
+    if mesaage.text:
+        CAP = message.text.replace("/echo", "")
+    else:
+        CAP = message.caption.replace("/echo", "")
+         
     if message.from_user.id == ADMIN: 
            
         if message.reply_to_message:
