@@ -53,10 +53,12 @@ async def echo(bot, message):
         
         if not message.reply_to_message and message.text:
            
-            await bot.copy_message(chat_id=message.chat.id, from_chat_id=message.chat.id, message_id=message.reply_to_message.message_id, reply_to_message_id=message.reply_to_message.message_id)
+            await bot.copy_message(await bot.copy_message(chat_id=message.chat.id, from_chat_id=message.chat.id, message_id=message.message_id, reply_to_message_id=message.reply_to_message.message_id)
+                                   
 
         if not message.reply_to_message and not message.text:
-       
+            await bot.copy_message(await bot.copy_message(chat_id=message.chat.id, from_chat_id=message.chat.id, message_id=message.message_id, reply_to_message_id=message.reply_to_message.message_id)
+                                   
          
        # else:
             
