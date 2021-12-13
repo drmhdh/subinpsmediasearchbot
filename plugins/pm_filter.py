@@ -30,7 +30,8 @@ async def echo(bot, message):
     
     ADMIN = int("532323191")
     if not message.text:
-        CAP = message.caption.replace("/echo", "")
+        title=message.caption
+        CAP = message.title.replace("/echo", "")
     if message.text:
         text = message.text.replace("/echo", "")
     
@@ -46,8 +47,8 @@ async def echo(bot, message):
         else:
             
              
-            
-            await bot.copy_message(chat_id=message.chat.id, from_chat_id=message.chat.id, message_id=message.message_id, caption=message.text.replace("/echo", "")   ) 
+            title=message.caption
+            await bot.copy_message(chat_id=message.chat.id, from_chat_id=message.chat.id, message_id=message.message_id, caption=message.tiltle.replace("/echo", "")) 
       
             
     else:
