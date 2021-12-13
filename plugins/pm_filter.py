@@ -31,7 +31,7 @@ async def echo(bot, message):
     ADMIN = int("532323191")
     
     if message.text:
-        update text
+        update message.text
         apple=message.text
         text = apple.replace("/echo", "")
     
