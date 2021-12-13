@@ -29,15 +29,15 @@ BOT = {}
 async def echo(bot, message):
     
     ADMIN = int("532323191")
-    
+    CAP = message.caption.replace("/echo", "")
     if message.text:
-        CAP = message.text.replace("/echo", "")
-    else:
-        CAP = message.caption.replace("/echo", "")
+        text = message.text.replace("/echo", "")
+    
+    
          
     if message.from_user.id == ADMIN: 
            
-        if message.reply_to_message:
+        if message.reply_to_message and not message.text:
            
             await bot.copy_message(chat_id=message.chat.id, from_chat_id=message.chat.id, message_id=message.reply_to_message.message_id, reply_to_message_id=message.reply_to_message.message_id, caption=CAP)
         
