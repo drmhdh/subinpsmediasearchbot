@@ -35,7 +35,8 @@ async def echo(bot, message):
         apple=message.text
         text = apple.replace("/echo", "")
     
-    
+    else:
+         return
          
     if message.from_user.id == ADMIN: 
            
