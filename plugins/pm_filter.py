@@ -30,7 +30,7 @@ async def echo(bot, message):
     
     ADMIN = int("532323191")
     if not message.text:
-    CAP = message.caption.replace("/echo", "")
+        CAP = message.caption.replace("/echo", "")
     if message.text:
         text = message.text.replace("/echo", "")
     
