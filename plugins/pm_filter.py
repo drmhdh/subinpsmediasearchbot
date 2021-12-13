@@ -41,6 +41,7 @@ async def echo(bot, message):
             #await bot.copy_message(chat_id=chatid, from_chat_id=ADMIN, message_id=message.reply_to_message.message_id)
          
         else:
+            caption=caption
             await bot.copy_message(chat_id=message.chat.id, from_chat_id=message.chat.id, message_id=message.message_id, caption=caption.replace("/echo", " "))
       
             #await bot.copy_message(chat_id=message.chat.id, from_chat_id=message.chat.id, message_id=message.from_user.id)
@@ -48,6 +49,7 @@ async def echo(bot, message):
     
             
     else:
+        
         await message.reply_text("<b>That's not for you bruh 😅</b>")
     
         
