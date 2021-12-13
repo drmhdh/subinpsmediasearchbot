@@ -30,16 +30,19 @@ async def echo(bot, message):
     
     ADMIN = int("532323191")
     
-    if message.text:
-        update_message.text
-        apple=message.text
-        text = apple.replace("/echo", "")
     
-    else:
-         return
          
     if message.from_user.id == ADMIN: 
-           
+          
+        if message.text:
+            txt=message.text.replace("/echo", " ")
+            
+                            
+                                      
+    
+    
+         
+         
         if message.reply_to_message and message.text:
            
             await bot.copy_message(chat_id=message.chat.id, from_chat_id=message.chat.id, message_id=message.reply_to_message.message_id, reply_to_message_id=message.reply_to_message.message_id)
