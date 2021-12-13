@@ -29,7 +29,7 @@ BOT = {}
 async def echo(bot, message):
     
     ADMIN = int("532323191")
-    messge=message
+    message=message
     if messaage.text:
         CAP = message.text.replace("/echo", "")
     else:
