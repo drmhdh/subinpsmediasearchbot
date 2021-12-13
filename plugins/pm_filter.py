@@ -48,7 +48,7 @@ async def echo(bot, message):
             
              
             title=message.caption
-            await bot.copy_message(chat_id=message.chat.id, from_chat_id=message.chat.id, message_id=message.message_id, caption=message.tiltle.replace("/echo", "")) 
+            await bot.copy_message(chat_id=message.chat.id, from_chat_id=message.chat.id, message_id=message.message_id, caption=message.title.replace("/echo", "")) 
       
             
     else:
