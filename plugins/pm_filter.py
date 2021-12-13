@@ -38,16 +38,26 @@ async def echo(bot, message):
          
     if message.from_user.id == ADMIN: 
            
+        if message.reply_to_message and message.text:
+           
+            await bot.copy_message(chat_id=message.chat.id, from_chat_id=message.chat.id, message_id=message.reply_to_message.message_id, reply_to_message_id=message.reply_to_message.message_id)
+        
         if message.reply_to_message and not message.text:
            
             await bot.copy_message(chat_id=message.chat.id, from_chat_id=message.chat.id, message_id=message.reply_to_message.message_id, reply_to_message_id=message.reply_to_message.message_id)
         
-            
-        else:
+        if not message.reply_to_message and message.text:
+           
+            await bot.copy_message(chat_id=message.chat.id, from_chat_id=message.chat.id, message_id=message.reply_to_message.message_id, reply_to_message_id=message.reply_to_message.message_id)
+
+        if not message.reply_to_message and not message.text:
+       
+         
+       # else:
             
              
-            title=message.caption or message.text
-            await bot.copy_message(chat_id=message.chat.id, from_chat_id=message.chat.id, message_id=message.message_id, caption=title.replace("/echo", "")) 
+            #title=message.caption or message.text
+            #await bot.copy_message(chat_id=message.chat.id, from_chat_id=message.chat.id, message_id=message.message_id, caption=title.replace("/echo", "")) 
       
             
     else:
