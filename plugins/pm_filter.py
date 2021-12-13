@@ -44,6 +44,8 @@ async def echo(bot, message):
         
             
         else:
+            CAP = message.caption.replace("/echo", "")
+             
             title=message.caption or message.text
             await bot.copy_message(chat_id=message.chat.id, from_chat_id=message.chat.id, message_id=message.message_id, caption=CAP) 
       
