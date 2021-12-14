@@ -27,7 +27,7 @@ import time
 
 
 
-from pyUltro
+
 from skimage.filters import threshold_local
 from telethon.errors.rpcerrorlist import PhotoSaveFileInvalidError
 
