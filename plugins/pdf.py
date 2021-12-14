@@ -26,11 +26,7 @@ import time
 
 
 
-from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
-
-
-
-
+fro
 from . import *
 
 if not os.path.isdir("pdf"):
