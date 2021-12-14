@@ -26,8 +26,8 @@ import time
 
 
 
-from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
-from pyUltroid.functions.tools import four_point_transform
+
+from pyUltro
 from skimage.filters import threshold_local
 from telethon.errors.rpcerrorlist import PhotoSaveFileInvalidError
 
