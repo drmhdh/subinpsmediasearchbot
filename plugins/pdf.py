@@ -32,7 +32,7 @@ from . import *
 if not os.path.isdir("pdf"):
     os.mkdir("pdf")
 
-@Client.on_message(
+@Client.on_message(filters.command)(
 #@Client_cmd(
     pattern="pdf ?(.*)",
 )
