@@ -24,7 +24,7 @@ import os
 import shutil
 import time
 
-from PIL import Image
+
 
 from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
 
