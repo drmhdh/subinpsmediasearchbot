@@ -43,7 +43,7 @@ if not os.path.isdir("pdf"):
     os.mkdir("pdf")
 
 
-@ultroid_cmd(
+@Client_cmd(
     pattern="pdf ?(.*)",
 )
 async def pdfseimg(event):
@@ -108,7 +108,7 @@ async def pdfseimg(event):
         os.remove("ult.png")
 
 
-@ultroid_cmd(
+@Client_cmd(
     pattern="pdtext ?(.*)",
 )
 async def pdfsetxt(event):
@@ -170,7 +170,7 @@ async def pdfsetxt(event):
     os.remove(dl)
 
 
-@ultroid_cmd(
+@Client_cmd(
     pattern="pdscan ?(.*)",
 )
 async def imgscan(event):
@@ -230,7 +230,7 @@ async def imgscan(event):
     os.remove(scann)
 
 
-@ultroid_cmd(
+@Client_cmd(
     pattern="pdsave ?(.*)",
 )
 async def savepdf(event):
@@ -298,7 +298,7 @@ async def savepdf(event):
     os.remove(ultt)
 
 
-@ultroid_cmd(
+@Client_cmd(
     pattern="pdsend ?(.*)",
 )
 async def sendpdf(event):
