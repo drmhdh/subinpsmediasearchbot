@@ -24,7 +24,7 @@ import os
 import shutil
 import time
 
-import numpy as np
+
 import PIL
 from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
 from pyUltroid.functions.tools import four_point_transform
