@@ -24,7 +24,7 @@ import os
 import shutil
 import time
 
-from pyrogram import numpy
+
 from pyrogram import Client
 
 from . import *
