@@ -28,7 +28,7 @@ import time
 
 
 
-from skimage.filters import threshold_local
+from  import t
 from telethon.errors.rpcerrorlist import PhotoSaveFileInvalidError
 
 from . import *
