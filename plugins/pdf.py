@@ -23,17 +23,17 @@ import glob
 import os
 import shutil
 import time
-from purogram import cv2
+from pyrogram import cv2
 from pyrogram import numpy
-
+from pyrogram import Client
 
 from . import *
 
 if not os.path.isdir("pdf"):
     os.mkdir("pdf")
 
-@Client.on_message(filters.command)(
-#@Client_cmd(
+
+@Client_cmd(
     pattern="pdf ?(.*)",
 )
 async def pdfseimg(event):
