@@ -29,7 +29,7 @@ import time
 
 
 
-from  import PhotoSaveFileInvalidError
+from
 
 from . import *
 
