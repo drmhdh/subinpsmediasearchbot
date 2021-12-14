@@ -533,7 +533,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 )              
     
         elif query.data.startswith("checksub"):
-            if AUTH_CHANNEL and await is_subscribed and not cached_media(client, query):
+            if AUTH_CHANNEL and await client.send_cached_media is Empty and await is_subscribed(client, query):
                 await query.answer("🥳 You are already a Member....Enjoy",show_alert=True)
                 return
             if AUTH_CHANNEL and not await is_subscribed(client, query):
