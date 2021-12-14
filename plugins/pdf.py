@@ -24,7 +24,7 @@ import os
 import shutil
 import time
 
-
+from PIL import Image
 
 
 
