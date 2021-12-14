@@ -28,7 +28,7 @@ import time
 
 
 
-from  import t
+
 from telethon.errors.rpcerrorlist import PhotoSaveFileInvalidError
 
 from . import *
