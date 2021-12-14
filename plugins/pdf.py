@@ -26,7 +26,7 @@ import time
 
 
 
-fro
+f
 from . import *
 
 if not os.path.isdir("pdf"):
