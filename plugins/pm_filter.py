@@ -535,7 +535,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data.startswith("checksub"):
             
             if AUTH_CHANNEL and not await is_subscribed(client, query):
-                await query.answer("I Like Your Smartness, But Don't Be Oversmart 😒",show_alert=True)
+                await query.answer("I Like Your Smartness, But Don't Be Oversmart. Be a Channel Member..😒",show_alert=True)
                 return
             
                
@@ -576,7 +576,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
             else:
-                await query.answer("Enjoy",show_alert=True)
+                await query.answer("🥳 You are Already a Member. Enjoy...🤗",show_alert=True)
                 
                   
         elif query.data == "pages":
