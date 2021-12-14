@@ -23,7 +23,7 @@ import glob
 import os
 import shutil
 import time
-from pyrogram import c
+
 from pyrogram import numpy
 from pyrogram import Client
 
