@@ -23,8 +23,8 @@ import glob
 import os
 import shutil
 import time
-
-
+from purogram import cv2
+from pyrogram import numpy
 
 
 from . import *
