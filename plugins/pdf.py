@@ -29,7 +29,7 @@ import time
 
 
 
-from telethon.errors.rpcerrorlist import PhotoSaveFileInvalidError
+from  import PhotoSaveFileInvalidError
 
 from . import *
 
