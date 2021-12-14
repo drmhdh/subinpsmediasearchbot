@@ -33,7 +33,7 @@ if not os.path.isdir("pdf"):
     os.mkdir("pdf")
 
 
-@Client.on_message(
+@Client(
     pattern="pdf ?(.*)",
 )
 async def pdfseimg(event):
