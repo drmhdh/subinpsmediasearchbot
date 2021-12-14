@@ -23,7 +23,7 @@ import glob
 import os
 import shutil
 import time
-import cv2
+
 import numpy as np
 import PIL
 from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
