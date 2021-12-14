@@ -26,66 +26,31 @@ BUTTONS = {}
 BOT = {}
 
 @Client.on_message(filters.command('echo') & filters.group)
-async def echo(bot, message):
-    
+async def echo(bot, message):   
     ADMIN = int("532323191")
-    
-    
-         
-    if message.from_user.id == ADMIN: 
-          
+    if message.from_user.id == ADMIN:           
         if message.text:
             txt=message.text.replace("/echo", " ")
         else:
-            title=message.caption
-            
-                            
-                                      
-    
-    
-         
-         
+            return
         if message.reply_to_message and message.text:
             try:
                 await bot.send_message(chat_id=message.chat.id, text=txt, reply_to_message_id=message.reply_to_message.message_id)
             except:
-                await bot.copy_message(chat_id=message.chat.id, from_chat_id=message.chat.id, message_id=message.reply_to_message.message_id)
-             
+                await bot.copy_message(chat_id=message.chat.id, from_chat_id=message.chat.id, message_id=message.reply_to_message.message_id)          
         if message.reply_to_message and not message.text:
-            title=message.caption
-            
-           
-            await bot.copy_message(chat_id=message.chat.id, from_chat_id=message.chat.id, message_id=message.message_id, reply_to_message_id=message.reply_to_message.message_id, caption=title.replace("/echo", " "))
-        
-        if not message.reply_to_message and message.text:
-           
-            #await bot.copy_message(chat_id=message.chat.id, from_chat_id=message.chat.id, message_id=message.message_id, reply_to_message_id=message.message_id)
+            title=message.caption 
+            await bot.copy_message(chat_id=message.chat.id, from_chat_id=message.chat.id, message_id=message.message_id, reply_to_message_id=message.reply_to_message.message_id, caption=title.replace("/echo", " "))        
+        if not message.reply_to_message and message.text:         
             await bot.send_message(chat_id=message.chat.id, text=txt, reply_to_message_id=message.message_id)
-                                      
-                                                     
-
         if not message.reply_to_message and not message.text:
-            title=message.caption
-            
+            title=message.caption            
             await bot.copy_message(chat_id=message.chat.id, from_chat_id=message.chat.id, message_id=message.message_id, reply_to_message_id=message.message_id, caption=title.replace("/echo", " ") )
-                                   
-         
-       # else:
-           # await bot.copy_message(chat_id=message.chat.id, from_chat_id=message.chat.id, message_id=message.reply_to_message.message_id)
-             
-            #title=message.caption or message.text
-            #await bot.copy_message(chat_id=message.chat.id, from_chat_id=message.chat.id, message_id=message.message_id, caption=title)
-      
-            
-    else:
-        
+      else:
         await message.reply_text("<b>That's not for you bruh 😅</b>")
-    
-        
+
     #except Exception as e:
     #await message.reply(f"<b>Error!!</b>\n \n<code>{e}</code>")
-
-
 
 @Client.on_message(filters.command('gsend') & filters.private)
 async def gsend(client, message):
