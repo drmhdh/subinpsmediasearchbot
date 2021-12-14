@@ -1,7 +1,6 @@
 #Kanged From @TroJanZheX
 from info import AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, AUTH_GROUPS, BUTTON, START_MSG, CHANNELS, ADMINS, PICS, SINGLE_BUTTON, API_KEY, P_TTI_SHOW_OFF, IMDB, IMDB_TEMPLATE
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
-
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
 import asyncio
 import pyrogram
@@ -70,7 +69,6 @@ async def give_filter(client, message):
     
     group_id = message.chat.id
     name = message.text
-    
     keywords = await get_filters(group_id)
     for keyword in reversed(sorted(keywords, key=len)):
         pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"
@@ -108,7 +106,6 @@ async def give_filter(client, message):
         
     else:
         await auto_filter(client, message)
-
         
 @Client.on_message(filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.text & filters.private & filters.incoming)
 async def filter(client, message):
@@ -216,10 +213,6 @@ async def filter(client, message):
            await message.reply_text(f"<b>{message.from_user.mention}, ☕️ 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗪𝗵𝗮𝘁 𝗜 𝗙𝗼𝘂𝗻𝗱 𝗳𝗼𝗿 𝗬𝗼𝘂𝗿 𝗤𝘂𝗲𝗿𝘆 ❝{search}❞ ‌‌‌‌‎ ­  ­  ­  ­  ­  </b> \n\n🅒 𝗣𝗼𝘄𝗲𝗿𝗲𝗱 𝗕𝘆 🅒  \n🔎🦷✨ @dental_case_study \n🔐 𝗝𝗢𝗜𝗡 ⤴️ 𝘁𝗼 𝗨𝗻𝗹𝗼𝗰𝗸 🚀", reply_markup=InlineKeyboardMarkup(buttons))
 
 
-            
-
-            
-            
 @Client.on_callback_query(filters.regex(r"^spolling"))
 async def advantage_spoll_choker(bot, query):
     _, user, movie_ = query.data.split('#')
@@ -240,7 +233,6 @@ async def advantage_spoll_choker(bot, query):
         k = await query.message.edit('This Movie Not Found In DataBase')
         await asyncio.sleep(10)
         await k.delete()            
-
 
 @Client.on_message(filters.text & filters.group & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.text & filters.group & filters.incoming)
 async def group(client, message):
@@ -576,35 +568,21 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await query.answer()
                 await client.send_cached_media(
                     chat_id=query.from_user.id,
-                
                     file_id=file_id,
-                
-                    
-                    
                     caption=f_caption,
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
-            
         elif query.data == "pages":
             await query.answer()
-     
-        
         elif query.data == "close":
             await query.message.delete()
-            
     else:
-        await query.answer("Thats not for you!!",show_alert=True)
-
-   
-                                                                              
+        await query.answer("Thats not for you!!",show_alert=True)                                                 
     if query.data == "close_data":
-        await query.message.delete()
-        
-                                  
+        await query.message.delete()                         
     elif query.data == "delallconfirm":
         userid = query.from_user.id
         chat_type = query.message.chat.type
-
         if chat_type == "private":
             grpid  = await active_connection(str(userid))
             if grpid is not None:
@@ -620,29 +598,23 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     "I'm not connected to any groups!\nCheck /connections or connect to any groups",
                     quote=True
                 )
-                return
-             
+                return      
         elif chat_type in ["group", "supergroup"]:
             grp_id = query.message.chat.id
             title = query.message.chat.title
-
         else:
             return
-
         st = await client.get_chat_member(grp_id, userid)
         if (st.status == "creator") or (str(userid) in ADMINS):    
             await del_all(query.message, grp_id, title)
         else:
-            await query.answer("You need to be Group Owner or an Auth User to do that!",show_alert=True)        
-        
+            await query.answer("You need to be Group Owner or an Auth User to do that!",show_alert=True)               
     elif query.data == "delallcancel":
         userid = query.from_user.id
         chat_type = query.message.chat.type
-
         if chat_type == "private":
             await query.message.reply_to_message.delete()
             await query.message.delete()
-
         elif chat_type in ["group", "supergroup"]:
             grp_id = query.message.chat.id
             st = await client.get_chat_member(grp_id, userid)
@@ -653,14 +625,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 except:
                     pass
             else:
-                await query.answer("Thats not for you!!",show_alert=True)
-    
-        
+                await query.answer("Thats not for you!!",show_alert=True)        
     elif "groupcb" in query.data:
         await query.answer()
-
-        group_id = query.data.split(":")[1]
-        
+        group_id = query.data.split(":")[1]        
         act = query.data.split(":")[2]
         hr = await client.get_chat(int(group_id))
         title = hr.title
@@ -956,6 +924,4 @@ async def auto_filter(client, message, spoll=False): #async def auto_filter(clie
     else:
         await query.answer("It Will Not Work for You, as It was Not Requested by You 😒",show_alert=True)     
        
-      
-      
-      
+   
