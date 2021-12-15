@@ -52,7 +52,7 @@ if not os.path.isdir("pdf"):
     
         
     
-@Ultroid_cmd(
+@BotzHub_cmd(
     pattern="pdf ?(.*)",
 )
 async def pdfseimg(event):
