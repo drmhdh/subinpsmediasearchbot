@@ -32,6 +32,16 @@ from . import *
 if not os.path.isdir("pdf"):
     os.mkdir("pdf")
 
+ def compile_pattern(data, hndlr):
+    if HNDLR == " ":  # No handler feature
+        return re.compile("^" + data.replace("^", "").replace(".", ""))
+    return (
+        re.compile(hndlr + data.replace("^", "").replace(".", ""))
+        if data.startswith("^")
+        else re.compile(hndlr + data)
+    )
+   
+    
 def ultroid_cmd(allow_sudo=should_allow_sudo(), **args):
     # With time and addition of Stuff
     # Decorator has turned lengthy and non attractive.
