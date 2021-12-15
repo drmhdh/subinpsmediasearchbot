@@ -50,8 +50,8 @@ if not os.path.isdir("pdf"):
         
 #@BotzHub.on(events.NewMessage(incoming=True, pattern="/pdf"))
 @BotzHub_cmd(
-    #pattern="pdf ?(.*)",
-    pattern="/pdf",
+    pattern="pdf ?(.*)",
+    #pattern="/pdf",
 )
 async def pdfseimg(event):
     ok = await event.get_reply_message()
