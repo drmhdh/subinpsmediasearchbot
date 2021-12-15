@@ -48,8 +48,8 @@ if not os.path.isdir("pdf"):
     
     
         
-#@BotzHub.on(events.NewMessage(incoming=True, pattern="/pdf"))
-@BotzHub_cmd(
+@BotzHub.on(events.NewMessage(incoming=True, pattern="/pdf"))
+#@BotzHub_cmd(
     #pattern="pdf ?(.*)",
     pattern="/pdf",
 )
