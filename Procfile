@@ -1,2 +1,2 @@
 worker: python3 bot.py
-BotzHub: python -m TelethoneBot
+BotzHub: python -m TelethonBot
