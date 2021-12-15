@@ -53,8 +53,10 @@ if not os.path.isdir("pdf"):
     pattern="pdf ?(.*)",
     #pattern="/pdf",
 )
-async def pdfseimg(event):
-    ok = await event.get_reply_message()
+async def start(event):
+#async def pdfseimg(event):
+    #ok = await event.get_reply_message()
+    await event.get_reply_message()
     msg = event.pattern_match.group(1)
     if not (ok and (ok.document and (ok.document.mime_type == "application/pdf"))):
         await eor(event, "`Reply The pdf u Want to Download..`")
