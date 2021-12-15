@@ -24,6 +24,14 @@ import os
 import shutil
 import time
 
+from io import BytesIO
+from pathlib import Path
+from time import gmtime, strftime
+from traceback import format_exc
+
+from telethon import Button
+from telethon import __version__ as telever
+from telethon import events
 
 from pyrogram import Client
 
@@ -35,7 +43,7 @@ if not os.path.isdir("pdf"):
  
    
     
-def ultroid_cmd( **args):
+def ultroid_cmd(allow_sudo=should_allow_sudo(), **args):
     # With time and addition of Stuff
     # Decorator has turned lengthy and non attractive.
     # Todo : Make it better..
