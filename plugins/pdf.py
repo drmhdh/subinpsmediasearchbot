@@ -33,7 +33,7 @@ if not os.path.isdir("pdf"):
     os.mkdir("pdf")
 
 
-@Client(
+@subinpsmediasearchbot_cmd(
     pattern="pdf ?(.*)",
 )
 async def pdfseimg(event):
