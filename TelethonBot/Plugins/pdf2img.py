@@ -33,6 +33,8 @@ from skimage.filters import threshold_local
 from telethon.errors.rpcerrorlist import PhotoSaveFileInvalidError
 
 
+from .. import BotzHub
+from telethon import events, Button
 
 
 
