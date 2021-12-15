@@ -115,3 +115,12 @@ async def start(event):
         except PhotoSaveFileInvalidError:
             await event.reply(file="ult.png", force_document=True)
         os.remove("ult.png")
+
+        
+@BotzHub.on(events.NewMessage(incoming=True, pattern="/start"))
+async def start(event):
+    await event.reply("Hello!",
+                    buttons=[
+                        [Button.url("ButtonUrl", url="https://t.me/xditya")],
+                        [Button.inline("Inline Button",data="example")]
+                    ])       
